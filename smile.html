@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smile Clinic (Dental) - Aviva Aesthetics</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic CSS Reset for full page width */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%; /* Ensure html and body take full width */
+            overflow-x: hidden; /* Prevents horizontal scrollbar if vw units are used later */
+        }
+
+        /* Basic dropdown styling */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px; /* Adjust width as needed */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {background-color: #ddd;}
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Basic centering for the main heading */
+        .main-heading {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem; /* Adjust size as needed */
+            color: #D4AF37; /* Changed to #D4AF37 */
+        }
+
+        /* --- LAYOUT FOR DOCTOR INFO AND SERVICES CATEGORIES --- */
+        /* This applies to the main doctor and general services layout */
+        .doctor-services-layout {
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column on small screens */
+            gap: 40px; /* Space between the two sections */
+            max-width: 1200px;
+            margin: 40px auto; /* Add some margin top/bottom */
+            padding: 0 20px; /* Padding for smaller screens */
+            /* Align items to the start (top) of their grid cells, as per your provided plastic-surgery.html */
+            align-items: start;
+        }
+
+        @media (min-width: 992px) { /* Adjust breakpoint as needed for tablet/desktop */
+            .doctor-services-layout {
+                grid-template-columns: 2fr 1fr; /* Doctor info takes 2/3, services takes 1/3 */
+                gap: 40px;
+            }
+        }
+        /* --- END NEW LAYOUT --- */
+
+        .about-doctor {
+            display: flex;
+            flex-direction: column; /* Stack image and info on small screens */
+            align-items: flex-start; /* Align content to the start (top) of the flex container */
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            /* Set a min-height that provides ample space for the doctor's content,
+                and visually balances the services list when fully visible. */
+            min-height: 480px; /* Adjusted min-height for better visual balance */
+        }
+
+        @media (min-width: 768px) {
+            .about-doctor {
+                flex-direction: row; /* Side-by-side on larger screens */
+                text-align: left;
+                align-items: flex-start; /* Ensure vertical alignment is still to the top when row */
+            }
+        }
+
+        .doctor-image {
+            flex-shrink: 0; /* Prevent image from shrinking */
+            margin-bottom: 20px; /* Space below image on small screens */
+            border-radius: 8px; /* Slightly rounded corners for the box image */
+            overflow: hidden; /* Ensures the image respects the border-radius */
+            /* INCREASED IMAGE SIZE FOR MOBILE */
+            width: 180px; /* Slightly larger width for the box image on mobile */
+            height: 220px; /* Proportionately taller for mobile */
+            border: 1px solid #e0d0b0; /* Softer border for the box image */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for the image box */
+        }
+        @media (min-width: 768px) {
+            .doctor-image {
+                margin-right: 30px; /* Space to the right of image on larger screens */
+                margin-bottom: 0;
+                /* INCREASED IMAGE SIZE FOR DESKTOP */
+                width: 280px; /* Wider for desktop */
+                height: 350px; /* Taller for desktop */
+            }
+        }
+
+        .doctor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image fills the container */
+            display: block;
+        }
+
+        .doctor-info {
+            flex-grow: 1; /* Allows info to take remaining space */
+            text-align: center; /* Default for small screens */
+        }
+        @media (min-width: 768px) {
+            .doctor-info {
+                text-align: left; /* Align text to left on larger screens */
+            }
+        }
+
+        .doctor-info h2 {
+            font-size: 2rem;
+            color: #D4AF37; /* Changed to #D4AF37 */
+            margin-bottom: 15px;
+        }
+
+        .doctor-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .doctor-info strong {
+            color: #D4AF37; /* Changed to #D4AF37 to match headings */
+        }
+
+
+        /* Our Services Overview (Now beside doctor info) */
+        .our-services-overview {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: auto; /* CRUCIAL: Let the height be determined by its content */
+            overflow: visible; /* CRUCIAL: Ensure content is NOT hidden by overflow */
+        }
+
+        .service-categories h3 {
+            font-size: 1.8rem;
+            color: #D4AF37; /* Changed to #D4AF37 */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 10px;
+            padding: 12px 18px; /* Slightly more padding for a larger touch area */
+            border-radius: 8px; /* Slightly more rounded corners */
+            background-color: #fcf8f3; /* Very light, subtle background (pale cream/gold) */
+            border: 1px solid #f0e0d0; /* Softer border for definition */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+
+        .category-list li a {
+            text-decoration: none;
+            color: #020202; /* Changed to #D4AF37 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .category-list li:hover { /* Simplified hover, applies to all items */
+            background-color: #f2e2cf; /* Slightly darker on hover, still light */
+            border-color: #e0d0b0;
+        }
+
+        .category-list li a:hover { /* Applies to all links on hover */
+            color: #A3824B; /* Darker on hover for better contrast */
+        }
+
+        .category-list .arrow {
+            font-size: 1.2rem;
+            margin-left: 10px;
+            color: #D4AF37; /* Changed to #D4AF37 */
+            transition: transform 0.2s ease;
+        }
+
+        .category-list li:hover .arrow { /* Applies to all arrows on hover */
+            transform: translateX(5px); /* Move arrow slightly right on hover */
+        }
+
+
+        /* Styles for the new treatment cards */
+        .doctor-treatments-section {
+            width: 100%; /* Make it take the full width of its parent */
+            box-sizing: border-box; /* Important: Ensures padding/border are included in the 100% width, preventing overflow */
+            padding: 40px 20px;
+            background-color: #ffffff; /* Changed to white for a 'normal' background */
+            /* Remove any 'max-width' or 'margin: auto;' if they exist on this element itself */
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #D4AF37; /* Changed to #D4AF37 */
+            margin-bottom: 40px;
+        }
+
+        .doctor-treatments-grid {
+            display: grid;
+            /* Explicitly set the column width to mimic the previous card size */
+            /* Using a fixed min-width for the single column, and let it take up to 350px if available, but not stretch */
+            grid-template-columns: minmax(280px, 350px);
+            gap: 30px; /* Still maintains gap if more items were added */
+            max-width: 1200px; /* Overall section width */
+            margin: 0 auto;
+            justify-content: flex-start; /* Align grid items to the start (left) */
+        }
+
+        .doctor-treatment-card {
+            background-color: #fff; /* White background for cards, similar to image */
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Lighter, less spread shadow */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .doctor-treatment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .doctor-treatment-card img {
+            width: 100%;
+            height: 200px; /* Adjust as needed */
+            object-fit: cover;
+            display: block;
+        }
+
+        .doctor-treatment-card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .doctor-treatment-card-content h3 {
+            font-size: 1.5rem;
+            color: #D4AF37; /* Changed to #D4AF37 */
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .doctor-treatment-card-content p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .treatment-buttons {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .treatment-buttons a {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-align: center;
+            flex: 1;
+        }
+
+        .more-info-btn {
+            background-color: #e0d0b0;
+            color: #D4AF37; /* Changed to #D4AF37 */
+            border: 1px solid #c2a36c;
+        }
+
+        .more-info-btn:hover {
+            background-color: #c2a36c;
+            color: white;
+        }
+
+        .book-now-btn {
+            background-color: #6a5acd; /* Blue/purple from the image */
+            color: white;
+            border: 1px solid #6a5acd;
+        }
+
+        .book-now-btn:hover {
+            background-color: #483d8b;
+            color: white;
+        }
+
+        /* Book Appointment Section (the one at the bottom of the page) */
+        .book-appointment-section {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f7f3ed; /* Softer, lighter background (very pale gold/cream) */
+            margin-top: 40px;
+            border-radius: 10px; /* Match other sections' border-radius */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            max-width: 1200px; /* Align with other main content */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .book-appointment-section .section-title {
+            color: #D4AF37; /* Changed to #D4AF37 */
+            margin-bottom: 15px;
+        }
+
+        .book-appointment-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .book-appointment-button-container {
+            margin-top: 20px;
+        }
+
+        /* Lighter book appointment button */
+        /* Book appointment button */
+        .book-appointment-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #D4AF37; /* Applied theme color */
+            color: white; /* White text for contrast */
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            border: 1px solid #c2a36c; /* Subtle border */
+        }
+
+        .book-appointment-button:hover {
+            background-color: #000000; /* Darker shade on hover */
+            color: white; /* White text on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly more prominent shadow on hover */
+        }
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .main-heading {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .doctor-treatments-grid {
+                grid-template-columns: 1fr; /* Stack cards on smaller screens */
+                justify-content: center; /* Center the single card on small screens */
+            }
+            .treatment-buttons a {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            .book-appointment-button {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+            /* Revert doctor image size on small screens, adjust to be less tall */
+            .doctor-image {
+                width: 150px; /* Smaller width for mobile */
+                height: 180px; /* Proportionately taller for mobile */
+            }
+        }
+
+        .page-navigation {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex; /* Keep flex to manage internal alignment */
+            justify-content: flex-end; /* Align main content to the right */
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-navigation .navigation-links {
+            display: flex;
+            justify-content: flex-end; /* Align the link inside this div to the right */
+            width: 100%; /* Ensure it takes full width to allow right alignment */
+        }
+
+        /* WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-float img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        /* Styles from comprehensive page for integration */
+        .content-section {
+            max-width: 1200px; /* Re-apply max-width for internal content within the full-width section */
+            margin: 0 auto; /* Center the content within the full-width section */
+            padding: 4rem 2rem;
+        }
+
+        .content-section h1 {
+            font-size: 2.8rem;
+            color: black; /* Changed to black */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-section h2 {
+            color: #D4AF37; /* Changed to #D4AF37 */
+            font-size: 2.2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center; /* Centering for h2 elements */
+        }
+
+        .content-section h3 {
+            color: #D4AF37; /* Changed to #D4AF37 */
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            text-align: left; /* Keep h3 left-aligned as per original service pages */
+        }
+
+        .content-section p {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            list-style: disc;
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .content-section ul li {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .content-section section {
+            margin-bottom: 3rem;
+        }
+
+        .introduction {
+            margin-bottom: 3rem;
+            text-align: center; /* Centering for introduction paragraph */
+        }
+
+        .introduction p {
+            text-align: center; /* Ensuring paragraphs in introduction are centered */
+        }
+
+
+        /* Checkmark list style */
+        .content-section .checkmark-list {
+            list-style: none; /* Remove default bullet */
+            padding-left: 0;
+        }
+
+        .content-section .checkmark-list li {
+            position: relative;
+            padding-left: 30px; /* Space for the checkmark */
+            margin-bottom: 10px;
+            color: #444;
+            font-size: 1.05rem;
+            text-align: left; /* Ensure checkmark list items are left-aligned */
+        }
+
+        .content-section .checkmark-list li::before {
+            content: '✅'; /* Checkmark character */
+            position: absolute;
+            left: 0;
+            color: #D4AF37; /* Changed to #D4AF37 */
+            font-size: 1.2em;
+            top: 0; /* Align with the top of the text */
+        }
+        
+        /* Adjusted for smaller screens from comprehensive page */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .content-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .content-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .content-section p,
+            .content-section ul li,
+            .content-section .checkmark-list li {
+                font-size: 1rem;
+            }
+            .content-section .checkmark-list li {
+                padding-left: 25px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/60x60/c2a36c/FFFFFF?text=Logo';" />
+            
+            <div class="hamburger-menu" id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="desktop-nav"> <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li class="dropdown">
+                        <a href="#">Services <i class="fas fa-chevron-down dropdown-arrow"></i></a> <div class="dropdown-content">
+                            <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                            <a href="dermatology.html">Dermatology</a>
+                            <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                            <a href="smile.html">Smile Clinic (Dental)</a>
+                            <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                            <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                            <a href="pediatrics.html">Pediatrics</a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#book">Appointment</a></li>
+                    <li><a href="index.html#team">Our Team</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <nav class="mobile-nav" id="mobile-nav">
+            <div class="mobile-nav-header">
+                <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="logo-img-mobile" onerror="this.onerror=null;this.src='https://placehold.co/60x60/c2a36c/FFFFFF?text=Logo';" />
+                <div class="close-menu" id="close-menu">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li class="mobile-dropdown">
+                    <a href="#">Services <i class="fas fa-chevron-down mobile-dropdown-arrow"></i></a>
+                    <div class="mobile-dropdown-content">
+                        <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                        <a href="dermatology.html">Dermatology</a>
+                        <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                        <a href="smile.html">Smile Clinic (Dental)</a>
+                        <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                        <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                        <a href="pediatrics.html">Pediatrics</a>
+                    </div>
+                </li>
+                <li><a href="index.html#book">Appointment</a></li>
+                <li><a href="index.html#team">Our Team</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="service-detail-page">
+        <h1 class="main-heading">Smile Clinic (Dental)</h1>
+
+        <div class="doctor-services-layout">
+            <section class="about-doctor">
+                <div class="doctor-image">
+                    <img src="assets/images/dental-doctor-placeholder.jpg" alt="Our Dental Team">
+                </div>
+                <div class="doctor-info">
+                    <h2>Meet Our Dental Experts</h2>
+                    <p>At Aviva Aesthetics' Smile Clinic, our dedicated team of experienced dental professionals is committed to providing exceptional oral care and crafting beautiful, healthy smiles. We utilize the latest technologies and patient-centric approaches to ensure your comfort and satisfaction.</p>
+                    <p>From routine check-ups to advanced cosmetic procedures, we offer a full spectrum of dental services designed to meet your individual needs and help you achieve the perfect smile.</p>
+                    <p><strong>Our Expertise Includes:</strong><br>General Dentistry, Cosmetic Dentistry, Orthodontics, Oral Surgery, and more.</p>
+                </div>
+            </section>
+
+            <section class="our-services-overview">
+                <div class="service-categories">
+                    <h3>Our Services</h3>
+                    <ul class="category-list">
+                        <li><a href="plastic-surgery.html">Plastic & Cosmetic Surgery <span class="arrow">→</span></a></li>
+                        <li><a href="dermatology.html">Dermatology <span class="arrow">→</span></a></li>
+                        <li><a href="skinandhairaesthetics.html">Skin & Hair Aesthetics <span class="arrow">→</span></a></li>
+                        <li><a href="smile.html">Smile Clinic (Dental) <span class="arrow">←</span></a></li>
+                        <li><a href="obesity-clinic.html">Obesity Clinic (Weight Loss) <span class="arrow">→</span></a></li>
+                        <li><a href="cosmetic-gynecology.html">Cosmetic Gynecology <span class="arrow">→</span></a></li>
+                        <li><a href="pediatrics.html">Pediatrics Clinic <span class="arrow">→</span></a></li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <section class="doctor-treatments-section">
+            <h2 class="section-title">Specialized Dental Treatments</h2>
+            <article class="content-section">
+                <h1>Comprehensive Dental Care at Aviva Aesthetics, Karimnagar</h1>
+                <h2 class="introduction">Your Smile. Our Priority.</h2>
+
+                <div class="introduction">
+                    <p>At Aviva Aesthetics, Karimnagar, we believe a healthy smile is the foundation of confidence and overall well-being. Our state-of-the-art Dental Clinic offers comprehensive dental care in a modern, relaxing environment—where advanced technology meets compassionate expertise.</p>
+                    <p>Whether you’re seeking preventive care, cosmetic enhancements, or restorative solutions, our skilled dental team is committed to delivering personalized, pain-free treatments that prioritize both health and aesthetics.</p>
+                </div>
+
+                <section class="treatment-details">
+                    <h2>Why Choose Aviva Dental Clinic?</h2>
+                    <ul class="checkmark-list">
+                        <li>Experienced Dentists: Led by highly trained and certified dental professionals with a patient-first approach.</li>
+                        <li>Modern Technology: Equipped with the latest dental equipment including digital X-rays, intraoral cameras, and laser dentistry tools.</li>
+                        <li>Sterile & Safe Environment: We adhere to strict sterilization protocols to ensure patient safety and hygiene.</li>
+                        <li>Customized Treatment Plans: Every smile is unique—we tailor our treatments to your specific dental and aesthetic goals.</li>
+                    </ul>
+
+                    <h2>Our Services</h2>
+                    <ul>
+                        <li><strong>🦷 Preventive Dentistry</strong>
+                            <ul>
+                                <li>Routine checkups and cleanings</li>
+                                <li>Digital X-rays and diagnostic screenings</li>
+                                <li>Oral hygiene education</li>
+                                <li>Fluoride treatments and sealants</li>
+                            </ul>
+                        </li>
+                        <li><strong>🪥 Restorative Dentistry</strong>
+                            <ul>
+                                <li>Tooth-colored fillings</li>
+                                <li>Crowns and bridges</li>
+                                <li>Root canal treatment (Endodontics)</li>
+                                <li>Dentures and partials</li>
+                                <li>Full mouth rehabilitation</li>
+                            </ul>
+                        </li>
+                        <li><strong>😁 Cosmetic Dentistry</strong>
+                            <ul>
+                                <li>Professional teeth whitening</li>
+                                <li>Smile makeovers</li>
+                                <li>Porcelain veneers</li>
+                                <li>Tooth contouring and bonding</li>
+                                <li>Invisalign® and clear aligners</li>
+                            </ul>
+                        </li>
+                        <li><strong>🦷 Pediatric Dentistry</strong>
+                            <ul>
+                                <li>Child-friendly care in a stress-free environment</li>
+                                <li>Preventive sealants and fluoride applications</li>
+                                <li>Early orthodontic assessments</li>
+                                <li>Cavity management and dietary counseling</li>
+                            </ul>
+                        </li>
+                        <li><strong>🦷 Oral Surgery & Implants</strong>
+                            <ul>
+                                <li>Tooth extractions (including wisdom teeth)</li>
+                                <li>Dental implants</li>
+                                <li>Bone grafting</li>
+                                <li>Surgical tooth exposure (for orthodontic purposes)</li>
+                            </ul>
+                        </li>
+                        <li><strong>😷 Emergency Dental Care</strong>
+                            <p>We offer prompt attention to dental emergencies such as severe tooth pain, trauma, infections, or broken restorations.</p>
+                        </li>
+                    </ul>
+
+                    <h2>Patient-Centered Experience</h2>
+                    <p>From the moment you walk through our doors, your comfort is our top priority. Our dental team takes time to listen to your concerns, explain treatment options, and ensure a relaxed, pain-free experience. We use gentle techniques and sedation options for those with dental anxiety.</p>
+
+                    <h2>Smile Design at Aviva Aesthetics</h2>
+                    <p>At Aviva Aesthetics, dentistry goes beyond functionality. Our aesthetic smile design approach combines art and science to craft harmonious, balanced smiles that enhance your natural facial features. Using digital simulations and mock-ups, we help you preview your future smile before starting any cosmetic treatment.</p>
+
+                    <h2>Convenient Location. Exceptional Care.</h2>
+                    <p>📍 Located in the heart of Karimnagar, our dental clinic is easily accessible with ample parking and a serene clinic ambiance that puts patients at ease.</p>
+                    <p>We welcome patients of all ages and are proud to serve the Karimnagar community with ethical, high-quality dental care.</p>
+                </section>
+            </article>
+        </section>
+
+        <section class="book-appointment-section">
+            <h2 class="section-title">Ready for Your Perfect Smile?</h2>
+            <p>Schedule a consultation with our dental experts today.</p>
+            <div class="book-appointment-button-container">
+                <a href="index.html#book" class="book-appointment-button">Book Your Appointment Now</a>
+            </div>
+        </section>
+
+        <section class="page-navigation">
+            <div class="navigation-links">
+                <a href="obesity-clinic.html" class="next-page">
+                    <span>Next Service: Obesity Clinic (Weight Loss) →</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-column brand-info">
+                <img src="assets/images/logo.PNG" alt="Aviva Aesthetics Logo" class="footer-logo">
+                <p>Aviva Aesthetics is one of the leading aesthetic clinics in Karimnagar, offering a comprehensive range of skin, hair, and body treatments.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/dr_haripriyaavivaaesthetics" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/YOUR_PAGE" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="http://youtube.com/YOUR_CHANNEL" target="_blank" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column quick-links">
+                <h4>Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html" id="home-link">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="plastic-surgery.html">Services</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                    <li><a href="index.html#book">Contact Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column useful-links">
+                <h4>Useful Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms and Conditions</a></li>
+                    <li><a href="#disclaimer">Disclaimer</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column make-appointment">
+                <h4>Make Appointment</h4>
+                <p class="clinic-hours">10 AM - 7 PM, Monday - Saturday</p>
+                <p class="clinic-hours">Sunday - Closed</p>
+
+                <div class="call-today-box">
+                    <div class="call-today-content">
+                        <div class="call-icon-wrapper">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="call-text-numbers">
+                            <p class="call-today-text">Call Us Today</p>
+                            <p class="call-today-number">(+91) 9129912945</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="footer-divider">
+
+        <div class="footer-bottom">
+            <p>© 2025 AvivaAesthetics.com. All rights reserved.</p>
+            <p>Powered by mallikdev</p>
+        </div>
+    </footer>
+    <a href="https://wa.me/919129912945"
+        class="whatsapp-float"
+        target="_blank"
+        aria-label="Chat on WhatsApp">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+    </a>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

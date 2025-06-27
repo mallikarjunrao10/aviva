@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smile Clinic (Dental) - Aviva Aesthetics</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/services.css">
+    <style>
+        /* Basic dropdown styling (if needed for header, though removed in reference) */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px; /* Adjust width as needed */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {background-color: #ddd;}
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .hero-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgb(39, 37, 37);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            width: 90%; /* Added for better responsiveness */
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .content-section h1 {
+            font-size: 2.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-section h2 {
+            color: #7a5a28; /* Theme color for headings */
+            font-size: 2.2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center; /* Centering for h2 elements */
+        }
+
+        .content-section h3 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            text-align: left; /* Keep h3 left-aligned as per original service pages */
+        }
+
+        .content-section p {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            list-style: disc;
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .content-section ul li {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .content-section section {
+            margin-bottom: 3rem;
+        }
+
+        .introduction {
+            margin-bottom: 3rem;
+            text-align: center; /* Centering for introduction paragraph */
+        }
+
+        .introduction p {
+            text-align: center; /* Ensuring paragraphs in introduction are centered */
+        }
+
+
+        /* Checkmark list style */
+        .content-section .checkmark-list {
+            list-style: none; /* Remove default bullet */
+            padding-left: 0;
+        }
+
+        .content-section .checkmark-list li {
+            position: relative;
+            padding-left: 30px; /* Space for the checkmark */
+            margin-bottom: 10px;
+            color: #444;
+            font-size: 1.05rem;
+            text-align: left; /* Ensure checkmark list items are left-aligned */
+        }
+
+        .content-section .checkmark-list li::before {
+            content: '✅'; /* Checkmark character */
+            position: absolute;
+            left: 0;
+            color: #7a5a28; /* Adjust checkmark color if needed */
+            font-size: 1.2em;
+            top: 0; /* Align with the top of the text */
+        }
+
+        .book-appointment {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .book-appointment-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: #e0d0b0; /* Lighter gold/brown from your palette */
+            color: #7a5a28; /* Darker text for contrast */
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #c2a36c;
+            margin-top: 2rem;
+        }
+
+        .book-appointment-button:hover {
+            background-color: #c2a36c; /* Slightly darker on hover */
+            color: white; /* White text on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .content-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .content-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .content-section p,
+            .content-section ul li,
+            .content-section .checkmark-list li {
+                font-size: 1rem;
+            }
+            .hero-section {
+                height: 300px; /* Adjust hero height for mobile */
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .content-section .checkmark-list li {
+                padding-left: 25px; /* Adjust padding for smaller screens */
+            }
+        }
+        /* WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-float img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <img src="assets/images/logo.png" alt="Aviva Aesthetics Logo" class="logo-img" />
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#about">About</a>
+                        <div class="dropdown-content">
+                            <a href="about-dr.html">About Doctor</a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#exclusives">Exclusives</a></li>
+                    <li class="dropdown">
+                        <a href="#">Services</a>
+                        <div class="dropdown-content">
+                            <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                            <a href="dermatology.html">Dermatology</a>
+                            <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                            <a href="smile.html">Smile Clinic (Dental)</a>
+                            <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                            <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#vouchers">Vouchers</a></li>
+                    <li><a href="index.html#contact">Appointment</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="index.html#team-section">Our Team</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <img src="assets/images/dentalhero.png" alt="Comprehensive Dental Care">
+        <div class="hero-content">
+            <h1>Comprehensive Dental Care at Aviva Aesthetics, Karimnagar</h1>
+            <p>Your Smile. Our Priority.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <article class="treatment-info">
+            <h1>Comprehensive Dental Care at Aviva Aesthetics, Karimnagar</h1>
+            <h2 class="introduction">Your Smile. Our Priority.</h2>
+
+            <div class="introduction">
+                <p>At Aviva Aesthetics, Karimnagar, we believe a healthy smile is the foundation of confidence and overall well-being. Our state-of-the-art Dental Clinic offers comprehensive dental care in a modern, relaxing environment—where advanced technology meets compassionate expertise.</p>
+                <p>Whether you’re seeking preventive care, cosmetic enhancements, or restorative solutions, our skilled dental team is committed to delivering personalized, pain-free treatments that prioritize both health and aesthetics.</p>
+            </div>
+
+            <section class="treatment-details">
+                <h2>Why Choose Aviva Dental Clinic?</h2>
+                <ul class="checkmark-list">
+                    <li>Experienced Dentists: Led by highly trained and certified dental professionals with a patient-first approach.</li>
+                    <li>Modern Technology: Equipped with the latest dental equipment including digital X-rays, intraoral cameras, and laser dentistry tools.</li>
+                    <li>Sterile & Safe Environment: We adhere to strict sterilization protocols to ensure patient safety and hygiene.</li>
+                    <li>Customized Treatment Plans: Every smile is unique—we tailor our treatments to your specific dental and aesthetic goals.</li>
+                </ul>
+
+                <h2>Our Services</h2>
+                <ul>
+                    <li><strong>🦷 Preventive Dentistry</strong>
+                        <ul>
+                            <li>Routine checkups and cleanings</li>
+                            <li>Digital X-rays and diagnostic screenings</li>
+                            <li>Oral hygiene education</li>
+                            <li>Fluoride treatments and sealants</li>
+                        </ul>
+                    </li>
+                    <li><strong>🪥 Restorative Dentistry</strong>
+                        <ul>
+                            <li>Tooth-colored fillings</li>
+                            <li>Crowns and bridges</li>
+                            <li>Root canal treatment (Endodontics)</li>
+                            <li>Dentures and partials</li>
+                            <li>Full mouth rehabilitation</li>
+                        </ul>
+                    </li>
+                    <li><strong>😁 Cosmetic Dentistry</strong>
+                        <ul>
+                            <li>Professional teeth whitening</li>
+                            <li>Smile makeovers</li>
+                            <li>Porcelain veneers</li>
+                            <li>Tooth contouring and bonding</li>
+                            <li>Invisalign® and clear aligners</li>
+                        </ul>
+                    </li>
+                    <li><strong>🦷 Pediatric Dentistry</strong>
+                        <ul>
+                            <li>Child-friendly care in a stress-free environment</li>
+                            <li>Preventive sealants and fluoride applications</li>
+                            <li>Early orthodontic assessments</li>
+                            <li>Cavity management and dietary counseling</li>
+                        </ul>
+                    </li>
+                    <li><strong>🦷 Oral Surgery & Implants</strong>
+                        <ul>
+                            <li>Tooth extractions (including wisdom teeth)</li>
+                            <li>Dental implants</li>
+                            <li>Bone grafting</li>
+                            <li>Surgical tooth exposure (for orthodontic purposes)</li>
+                        </ul>
+                    </li>
+                    <li><strong>😷 Emergency Dental Care</strong>
+                        <p>We offer prompt attention to dental emergencies such as severe tooth pain, trauma, infections, or broken restorations.</p>
+                    </li>
+                </ul>
+
+                <h2>Patient-Centered Experience</h2>
+                <p>From the moment you walk through our doors, your comfort is our top priority. Our dental team takes time to listen to your concerns, explain treatment options, and ensure a relaxed, pain-free experience. We use gentle techniques and sedation options for those with dental anxiety.</p>
+
+                <h2>Smile Design at Aviva Aesthetics</h2>
+                <p>At Aviva Aesthetics, dentistry goes beyond functionality. Our aesthetic smile design approach combines art and science to craft harmonious, balanced smiles that enhance your natural facial features. Using digital simulations and mock-ups, we help you preview your future smile before starting any cosmetic treatment.</p>
+
+                <h2>Convenient Location. Exceptional Care.</h2>
+                <p>📍 Located in the heart of Karimnagar, our dental clinic is easily accessible with ample parking and a serene clinic ambiance that puts patients at ease.</p>
+                <p>We welcome patients of all ages and are proud to serve the Karimnagar community with ethical, high-quality dental care.</p>
+
+                <section class="book-appointment">
+                    <h2>Book Your Appointment Today</h2>
+                    <p>Whether you’re due for a routine checkup or looking to transform your smile, trust Aviva Dental Clinic for care that’s gentle, advanced, and personalized.</p>
+                    <a href="index.html#contact" class="book-appointment-button">Book Your Consultation Now</a>
+                </section>
+            </section>
+        </article>
+    </section>
+
+    <footer style="background-color: #c2a36c; color: white; padding: 3rem 1rem;">
+        <div style="max-width: 1100px; margin: auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
+            <div style="flex: 1; min-width: 200px;">
+                <h3>Aviva Aesthetics</h3>
+                <p>Premium aesthetic treatments and procedures by Dr. Haripriya, providing exceptional care and natural-looking results.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="https://instagram.com/dr_haripriyaavivaaesthetics" target="_blank" style="margin-right: 10px;">
+                        <img src="assets/images/icons8-instagram-48.png" alt="Instagram" width="24">
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <img src="assets/images/icons8-facebook-48.png" alt="Facebook" width="24">
+                    </a>
+                </div>
+            </div>
+
+            <div style="flex: 1; min-width: 150px;">
+                <h4>Explore Services</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="plastic-surgery.html" style="color: white; text-decoration: none;">Plastic & Cosmetic Surgery</a></li>
+                    <li><a href="dermatology.html" style="color: white; text-decoration: none;">Dermatology</a></li>
+                    <li><a href="skinandhairaesthetics.html" style="color: white; text-decoration: none;">Skin & Hair Aesthetics</a></li>
+                    <li><a href="smile.html" style="color: white; text-decoration: none;">Smile Clinic (Dental)</a></li>
+                    <li><a href="obesity-clinic.html" style="color: white; text-decoration: none;">Obesity Clinic (Weight Loss)</a></li>
+                    <li><a href="cosmetic-gynecology.html" style="color: white; text-decoration: none;">Cosmetic Gynecology</a></li>
+                </ul>
+            </div>
+
+            <div style="flex: 1; min-width: 150px;">
+                <h4>Services</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li>Facial Treatments</li>
+                    <li>Injectables</li>
+                    <li>Skin Rejuvenation</li>
+                    <li>Body Contouring</li>
+                    <li>Hair Restoration</li>
+                    <li>Wellness Therapies</li>
+                </ul>
+            </div>
+
+            <div style="flex: 1; min-width: 200px;">
+                <h4>Contact Information</h4>
+                <p><strong>Location:</strong> Court Chowrasta, Biba showroom, Karimnagar</p>
+                <p><strong>Phone:</strong> +91 8125251010</p>
+                <p><strong>Email:</strong> info@aviva-aesthetics.com</p>
+            </div>
+        </div>
+    </footer>
+    <a href="https://wa.me/918125251010"
+        class="whatsapp-float"
+        target="_blank"
+        aria-label="Chat on WhatsApp">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+    </a>
+    <script src="assets/js/scripts.js"></script>
+</body>
+</html>

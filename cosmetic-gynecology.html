@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetic Gynecology - Aviva Aesthetics</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/services.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic dropdown styling */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px; /* Adjust width as needed */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {background-color: #ddd;}
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Basic centering for the main heading */
+        .main-heading {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem; /* Adjust size as needed */
+            color: #D4AF37; /* Changed to #D4AF37 to match obesity-clinic.html */
+        }
+
+        /* --- LAYOUT FOR DOCTOR INFO AND SERVICES CATEGORIES --- */
+        /* This applies to the main doctor and general services layout */
+        .doctor-services-layout {
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column on small screens */
+            gap: 40px; /* Space between the two sections */
+            max-width: 1200px;
+            margin: 40px auto; /* Add some margin top/bottom */
+            padding: 0 20px; /* Padding for smaller screens */
+            /* Align items to the start (top) of their grid cells, as per your provided plastic-surgery.html */
+            align-items: start;
+        }
+
+        @media (min-width: 992px) { /* Adjust breakpoint as needed for tablet/desktop */
+            .doctor-services-layout {
+                grid-template-columns: 2fr 1fr; /* Doctor info takes 2/3, services takes 1/3 */
+                gap: 40px;
+            }
+        }
+        /* --- END NEW LAYOUT --- */
+
+        .about-doctor {
+            display: flex;
+            flex-direction: column; /* Stack image and info on small screens */
+            align-items: flex-start; /* Align content to the start (top) of the flex container */
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            /* Set a min-height that provides ample space for the doctor's content,
+               and visually balances the services list when fully visible. */
+            min-height: 480px; /* Adjusted min-height for better visual balance */
+        }
+
+        @media (min-width: 768px) {
+            .about-doctor {
+                flex-direction: row; /* Side-by-side on larger screens */
+                text-align: left;
+                align-items: flex-start; /* Ensure vertical alignment is still to the top when row */
+            }
+        }
+
+        .doctor-image {
+            flex-shrink: 0; /* Prevent image from shrinking */
+            margin-bottom: 20px; /* Space below image on small screens */
+            border-radius: 8px; /* Slightly rounded corners for the box image */
+            overflow: hidden; /* Ensures the image respects the border-radius */
+            /* INCREASED IMAGE SIZE FOR MOBILE */
+            width: 180px; /* Slightly larger width for the box image on mobile */
+            height: 220px; /* Proportionately taller for mobile */
+            border: 1px solid #e0d0b0; /* Softer border for the box image */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for the image box */
+        }
+        @media (min-width: 768px) {
+            .doctor-image {
+                margin-right: 30px; /* Space to the right of image on larger screens */
+                margin-bottom: 0;
+                /* INCREASED IMAGE SIZE FOR DESKTOP */
+                width: 280px; /* Wider for desktop */
+                height: 350px; /* Taller for desktop */
+            }
+        }
+
+        .doctor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image fills the container */
+            display: block;
+        }
+
+        .doctor-info {
+            flex-grow: 1; /* Allows info to take remaining space */
+            text-align: center; /* Default for small screens */
+        }
+        @media (min-width: 768px) {
+            .doctor-info {
+                text-align: left; /* Align text to left on larger screens */
+            }
+        }
+
+        .doctor-info h2 {
+            font-size: 2rem;
+            color: #D4AF37; /* Changed to #D4AF37 to match obesity-clinic.html */
+            margin-bottom: 15px;
+        }
+
+        .doctor-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .doctor-info strong {
+            color: #D4AF37; /* Changed to #D4AF37 to match obesity-clinic.html */
+        }
+
+
+        /* Our Services Overview (Now beside doctor info) */
+        .our-services-overview {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: auto; /* CRUCIAL: Let the height be determined by its content */
+            overflow: visible; /* CRUCIAL: Ensure content is NOT hidden by overflow */
+        }
+
+        .service-categories h3 {
+            font-size: 1.8rem;
+            color: #D4AF37; /* Changed to #D4AF37 to match obesity-clinic.html */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 10px;
+            padding: 12px 18px; /* Slightly more padding for a larger touch area */
+            border-radius: 8px; /* Slightly more rounded corners */
+            background-color: #fcf8f3; /* Very light, subtle background (pale cream/gold) */
+            border: 1px solid #f0e0d0; /* Softer border for definition */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .category-list li a {
+            text-decoration: none;
+            color: #020202; /* Changed to #020202 (black) to match obesity-clinic.html */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .category-list li:hover { /* Simplified hover, applies to all items */
+            background-color: #f2e2cf; /* Slightly darker on hover, still light */
+            border-color: #e0d0b0;
+        }
+
+        .category-list li a:hover { /* Applies to all links on hover */
+            color: #A3824B; /* Darker on hover for better contrast, matches obesity-clinic.html */
+        }
+
+        .category-list .arrow {
+            font-size: 1.2rem;
+            margin-left: 10px;
+            color: #D4AF37; /* Changed to #D4AF37 to match obesity-clinic.html */
+            transition: transform 0.2s ease;
+        }
+
+        .category-list li:hover .arrow { /* Applies to all arrows on hover */
+            transform: translateX(5px); /* Move arrow slightly right on hover */
+        }
+
+
+        /* Book Appointment Section */
+        .book-appointment-section {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f7f3ed; /* Softer, lighter background (very pale gold/cream) */
+            margin-top: 40px;
+            border-radius: 10px; /* Match other sections' border-radius */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            max-width: 1200px; /* Align with other main content */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .book-appointment-section .section-title {
+            color: #D4AF37; /* Changed to #D4AF37 to match obesity-clinic.html */
+            margin-bottom: 15px;
+        }
+
+        .book-appointment-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .book-appointment-button-container {
+            margin-top: 20px;
+        }
+
+        /* Lighter book appointment button */
+        .book-appointment-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #D4AF37; /* Applied theme color to match obesity-clinic.html */
+            color: white; /* White text for contrast */
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            border: 1px solid #c2a36c; /* Subtle border */
+        }
+
+        .book-appointment-button:hover {
+            background-color: #000000; /* Darker shade on hover to match obesity-clinic.html */
+            color: white; /* White text on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly more prominent shadow on hover */
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .main-heading {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .doctor-treatments-grid {
+                grid-template-columns: 1fr; /* Stack cards on smaller screens, allowing full width */
+                justify-content: center; /* Center the single card on small screens */
+            }
+            .treatment-buttons a {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            .book-appointment-button {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+            /* Revert doctor image size on small screens, adjust to be less tall */
+            .doctor-image {
+                width: 150px; /* Smaller width for mobile */
+                height: 180px; /* Proportionately taller for mobile */
+            }
+        }
+
+        .page-navigation {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex; /* Keep flex to manage internal alignment */
+            justify-content: flex-end; /* Align main content to the right */
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-navigation .navigation-links {
+            display: flex;
+            justify-content: flex-end; /* Align the link inside this div to the right */
+            width: 100%; /* Ensure it takes full width to allow right alignment */
+        }
+
+        /* WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-float img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+        
+        /* Styles for the integrated content section (Medical Weight Management) */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .content-section h1 {
+            font-size: 2.8rem;
+            color: black; /* Changed to black to match obesity-clinic.html */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-section h2 {
+            color: #D4AF37; /* Changed to #D4AF37 to match obesity-clinic.html */
+            font-size: 2.2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-section h3 {
+            color: #D4AF37; /* Changed to #D4AF37 to match obesity-clinic.html */
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .content-section p {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            list-style: disc;
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .content-section ul li {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .content-section section {
+            margin-bottom: 3rem;
+        }
+
+        .introduction {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .introduction p {
+            text-align: center;
+        }
+
+        .content-section .checkmark-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section .checkmark-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            color: #444;
+            font-size: 1.05rem;
+            text-align: left;
+        }
+
+        .content-section .checkmark-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            color: #D4AF37; /* Changed to #D4AF37 to match obesity-clinic.html */
+            font-size: 1.2em;
+            top: 0;
+        }
+
+        /* Adjusted for smaller screens from comprehensive page */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .content-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .content-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .content-section p,
+            .content-section ul li,
+            .content-section .checkmark-list li {
+                font-size: 1rem;
+            }
+            .content-section .checkmark-list li {
+                padding-left: 25px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/60x60/c2a36c/FFFFFF?text=Logo';" />
+            
+            <div class="hamburger-menu" id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="desktop-nav"> <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li class="dropdown">
+                        <a href="#">Services <i class="fas fa-chevron-down dropdown-arrow"></i></a> <div class="dropdown-content">
+                            <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                            <a href="dermatology.html">Dermatology</a>
+                            <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                            <a href="smile.html">Smile Clinic (Dental)</a>
+                            <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                            <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                            <a href="pediatrics.html">Pediatrics</a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#book">Appointment</a></li>
+                    <li><a href="index.html#team">Our Team</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <nav class="mobile-nav" id="mobile-nav">
+            <div class="mobile-nav-header">
+                <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="logo-img-mobile" onerror="this.onerror=null;this.src='https://placehold.co/60x60/c2a36c/FFFFFF?text=Logo';" />
+                <div class="close-menu" id="close-menu">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li class="mobile-dropdown">
+                    <a href="#">Services <i class="fas fa-chevron-down mobile-dropdown-arrow"></i></a>
+                    <div class="mobile-dropdown-content">
+                        <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                        <a href="dermatology.html">Dermatology</a>
+                        <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                        <a href="smile.html">Smile Clinic (Dental)</a>
+                        <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                        <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                        <a href="pediatrics.html">Pediatrics</a>
+                    </div>
+                </li>
+                <li><a href="index.html#book">Appointment</a></li>
+                <li><a href="index.html#team">Our Team</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="service-detail-page">
+        <h1 class="main-heading">Cosmetic Gynecology</h1>
+
+        <div class="doctor-services-layout">
+            <section class="about-doctor">
+                <div class="doctor-image">
+                    <img src="assets/images/cosmetic-gynecology-team-placeholder.jpg" alt="Our Cosmetic Gynecology Team">
+                </div>
+                <div class="doctor-info">
+                    <h2>About Our Cosmetic Gynecology Clinic</h2>
+                    <p>Our Cosmetic Gynecology Clinic offers a range of aesthetic and functional procedures for women, focusing on enhancing comfort, confidence, and overall well-being. Our expert team provides personalized care in a discreet and supportive environment. We understand the sensitive nature of these procedures and are committed to delivering the highest standards of care with compassion and professionalism.</p>
+                    <p><strong>Our Expert Team Includes:</strong><br>Gynae-Plastic Surgeons, Dermatologists, Sexologists</p>
+                </div>
+            </section>
+
+            <section class="our-services-overview">
+                <div class="service-categories">
+                    <h3>Our Services</h3>
+                    <ul class="category-list">
+                        <li><a href="plastic-surgery.html">Plastic & Cosmetic Surgery <span class="arrow">→</span></a></li>
+                        <li><a href="dermatology.html">Dermatology <span class="arrow">→</span></a></li>
+                        <li><a href="skinandhairaesthetics.html">Skin & Hair Aesthetics <span class="arrow">→</span></a></li>
+                        <li><a href="smile.html">Smile Clinic (Dental) <span class="arrow">→</span></a></li>
+                        <li><a href="obesity-clinic.html">Obesity Clinic (Weight Loss) <span class="arrow">→</span></a></li>
+                        <li><a href="cosmetic-gynecology.html">Cosmetic Gynecology <span class="arrow">←</span></a></li>
+                        <li><a href="pediatrics.html">Pediatrics Clinic <span class="arrow">→</span></a></li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <section class="content-section" id="cosmetic-gynecology-content">
+            <article class="treatment-info">
+                <h1>Cosmetic Gynecology at Aviva Aesthetics, Karimnagar</h1>
+                <h2 class="introduction">Empowering Women with Confidence and Comfort</h2>
+
+                <div class="introduction">
+                    <p>At Aviva Aesthetics, Karimnagar, we believe that every woman deserves to feel confident, comfortable, and empowered in her own body. Our Cosmetic Gynecology Department is dedicated to helping women achieve just that—by offering advanced, safe, and personalized treatments designed to enhance both functional and aesthetic aspects of feminine health.</p>
+                </div>
+
+                <section class="treatment-details">
+                    <h2>What is Cosmetic Gynecology?</h2>
+                    <p>Cosmetic gynecology is a specialized branch that combines gynecology with aesthetic procedures to address concerns related to the appearance and function of female genitalia. These procedures are not just about looks—they often significantly improve comfort, sexual wellness, and self-esteem.</p>
+
+                    <h2>Our Services Include:</h2>
+                    <ul class="checkmark-list">
+                        <li><strong>Vaginal Rejuvenation:</strong> A non-surgical or minimally invasive procedure that tightens and revitalizes the vaginal canal, often using laser or radiofrequency technology. It’s ideal for women post-childbirth or in menopause experiencing laxity or dryness.</li>
+                        <li><strong>Labiaplasty:</strong> This surgical procedure reduces or reshapes the labia minora or labia majora for improved comfort and appearance. It can relieve irritation and enhance self-confidence.</li>
+                        <li><strong>Hymenoplasty:</strong> A sensitive procedure to reconstruct the hymen, performed with complete privacy and respect.</li>
+                        <li><strong>Clitoral Hood Reduction:</strong> Enhances clitoral stimulation by reducing excess skin, often done in conjunction with labiaplasty for overall aesthetic enhancement.</li>
+                        <li><strong>G-Spot Amplification:</strong> A non-surgical procedure designed to enhance sexual pleasure by augmenting the G-spot area using fillers.</li>
+                        <li><strong>Platelet-Rich Plasma (PRP) Therapy:</strong> PRP injections can improve lubrication, sensitivity, and orgasmic function by promoting tissue regeneration.</li>
+                    </ul>
+
+                    <h2>Why Choose Aviva Aesthetics?</h2>
+                    <ul class="checkmark-list">
+                        <li><strong>Expertise & Experience:</strong> Our gynecologists are specially trained in cosmetic procedures with a strong focus on safety and results.</li>
+                        <li><strong>Confidential & Compassionate Care:</strong> We maintain the highest standards of patient confidentiality and emotional support throughout your journey.</li>
+                        <li><strong>Advanced Technology:</strong> We use the latest in laser and radiofrequency equipment for precise, minimally invasive procedures.</li>
+                        <li><strong>Customized Treatment Plans:</strong> Every woman’s body is unique, and so are her goals. We work with you to create a personalized plan that fits your needs.</li>
+                    </ul>
+
+                    <h2>A Safe Space for Every Woman</h2>
+                    <p>Cosmetic gynecology is not just about physical transformation—it’s about reclaiming confidence, comfort, and control. Whether you’re looking to restore your body after childbirth, improve intimacy, or simply feel more in tune with yourself, the Cosmetic Gynecology Department at Aviva Aesthetics is here for you.</p>
+                </section>
+            </article>
+        </section>
+
+        <section class="book-appointment-section">
+            <h2 class="section-title">Confidential Consultation for Cosmetic Gynecology</h2>
+            <p>Schedule a private consultation with our specialists to discuss your concerns and explore treatment options.</p>
+            <div class="book-appointment-button-container">
+                <a href="index.html#book" class="book-appointment-button">Book Your Appointment Now</a>
+            </div>
+        </section>
+
+        <section class="page-navigation">
+            <div class="navigation-links">
+                <a href="pediatrics.html" class="next-page">
+                    <span>Next Service: Pediatrics Clinic →</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-column brand-info">
+                <img src="assets/images/logo.PNG" alt="Aviva Aesthetics Logo" class="footer-logo">
+                <p>Aviva Aesthetics is one of the leading aesthetic clinics in Karimnagar, offering a comprehensive range of skin, hair, and body treatments.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/dr_haripriyaavivaaesthetics" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/YOUR_PAGE" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="http://youtube.com/YOUR_CHANNEL" target="_blank" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+           <div class="footer-column quick-links">
+                <h4>Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html" id="home-link">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="plastic-surgery.html">Services</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                    <li><a href="index.html#book">Contact Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column useful-links">
+                <h4>Useful Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms and Conditions</a></li>
+                    <li><a href="#disclaimer">Disclaimer</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column make-appointment">
+                <h4>Make Appointment</h4>
+                <p class="clinic-hours">10 AM - 7 PM, Monday - Saturday</p>
+                <p class="clinic-hours">Sunday - Closed</p>
+
+                <div class="call-today-box">
+                    <div class="call-today-content">
+                        <div class="call-icon-wrapper">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="call-text-numbers">
+                            <p class="call-today-text">Call Us Today</p>
+                            <p class="call-today-number">(+91) 9129912945</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="footer-divider">
+
+        <div class="footer-bottom">
+            <p>© 2025 AvivaAesthetics.com. All rights reserved.</p>
+            <p>Powered by mallikdev</p>
+        </div>
+    </footer>
+    <a href="https://wa.me/919129912945"
+        class="whatsapp-float"
+        target="_blank"
+        aria-label="Chat on WhatsApp">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+    </a>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

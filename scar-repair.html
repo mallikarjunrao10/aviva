@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scar Repair and Revision - Aviva Aesthetics</title>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic dropdown styling */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {background-color: #ddd;}
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            /* Maintain aspect ratio based on a 1100x500 image */
+            padding-bottom: 45.45%; /* (500 / 1100) * 100% */
+            overflow: hidden;
+            height: auto; /* Ensure height is auto to respect padding-bottom */
+        }
+
+        .hero-section img {
+            position: absolute; /* Essential for filling the padding-bottom container */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensures the entire image is visible, like pediatrics */
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            width: 90%;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .content-section h1 {
+            font-size: 2.8rem;
+            color: #0a0a09; /* Changed to gold */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-section h2 {
+            color: #D4AF37; /* Changed to gold */
+            font-size: 2.2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center; /* Centering for h2 elements */
+        }
+
+        .content-section h3 {
+            color: #000000; /* Changed to gold */
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            text-align: left; /* Keep h3 left-aligned as per original service pages */
+        }
+
+        .content-section p {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            list-style: disc;
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .content-section ul li {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .content-section section {
+            margin-bottom: 3rem;
+        }
+
+        .author {
+            text-align: center;
+            color: #D4AF37; /* Changed to gold */
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .introduction {
+            margin-bottom: 3rem;
+            text-align: center; /* Centering for introduction paragraph */
+        }
+
+        .introduction p {
+            text-align: center; /* Ensuring paragraphs in introduction are centered */
+        }
+
+        /* Hair transplant specific list style with numbers */
+        .content-section .hair-transplant-list {
+            list-style: none; /* Remove default bullet */
+            padding-left: 0;
+            max-width: 800px; /* Limit width for better readability */
+            margin: 2rem auto; /* Center the list */
+            counter-reset: custom-counter; /* Initialize counter */
+        }
+
+        .content-section .hair-transplant-list li {
+            position: relative;
+            padding-left: 35px; /* Space for the number */
+            margin-bottom: 15px;
+            color: #444;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            text-align: left; /* Ensure list items are left-aligned */
+        }
+
+        .content-section .hair-transplant-list li::before {
+            counter-increment: custom-counter; /* Increment counter */
+            content: counter(custom-counter) ". "; /* Display the counter */
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
+            color: #7a5a28; /* Adjust number color */
+            font-size: 1.1em;
+        }
+
+        .book-appointment {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .book-appointment-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #D4AF37; /* Applied theme color to match obesity-clinic.html */
+            color: white; /* White text for contrast */
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            border: 1px solid #c2a36c; /* Subtle border */
+        }
+
+        .book-appointment-button:hover {
+            background-color: #000000; /* Darker shade on hover to match obesity-clinic.html */
+            color: white; /* White text on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly more prominent shadow on hover */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .content-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .content-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .content-section p,
+            .content-section ul li,
+            .content-section .hair-transplant-list li {
+                font-size: 1rem;
+            }
+            .hero-section {
+                padding-bottom: 45.45%; /* Keep consistent aspect ratio for mobile too */
+                height: auto; /* Ensure height is auto to respect padding-bottom */
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .content-section .hair-transplant-list li {
+                padding-left: 30px; /* Adjust padding for smaller screens */
+            }
+        }
+        /* WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-float img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/60x60/c2a36c/FFFFFF?text=Logo';" />
+            
+            <div class="hamburger-menu" id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li class="dropdown">
+                        <a href="#">Services <i class="fas fa-chevron-down dropdown-arrow"></i></a>
+                        <div class="dropdown-content">
+                            <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                            <a href="dermatology.html">Dermatology</a>
+                            <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                            <a href="smile.html">Smile Clinic (Dental)</a>
+                            <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                            <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                            <a href="pediatrics.html">Pediatrics</a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#book">Appointment</a></li>
+                    <li><a href="index.html#team">Our Team</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <nav class="mobile-nav" id="mobile-nav">
+            <div class="mobile-nav-header">
+                <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="logo-img-mobile" onerror="this.onerror=null;this.src='https://placehold.co/60x60/c2a36c/FFFFFF?text=Logo';" />
+                <div class="close-menu" id="close-menu">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li class="mobile-dropdown">
+                    <a href="#">Services <i class="fas fa-chevron-down mobile-dropdown-arrow"></i></a>
+                    <div class="mobile-dropdown-content">
+                        <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                        <a href="dermatology.html">Dermatology</a>
+                        <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                        <a href="smile.html">Smile Clinic (Dental)</a>
+                        <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                        <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                        <a href="pediatrics.html">Pediatrics</a>
+                    </div>
+                </li>
+                <li><a href="index.html#book">Appointment</a></li>
+                <li><a href="index.html#team">Our Team</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <img src="assets/images/Scar Repar.png" alt="Scar Repair and Revision Treatment" onerror="this.onerror=null;this.src='https://placehold.co/1100x500/D4AF37/000000?text=Scar+Repair';">
+        <div class="hero-content">
+            <h1>Scar Repair and Revision</h1>
+            <p>Expert Care by Plastic Surgeon Dr. Saideep Ravuru</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <article class="treatment-info">
+            <h1 class="main-content-title">Scar Repair and Revision at Aviva Aesthetics</h1>
+            <h2 class="author">By Plastic Surgeon Dr. Saideep Ravuru</h2>
+
+            <div class="introduction">
+                <p>Scars are natural reminders of healing, but when they become prominent, uncomfortable, or aesthetically concerning, they can affect confidence and quality of life. At Aviva Aesthetics, led by renowned plastic surgeon **Dr. Saideep Ravuru**, we offer advanced scar repair and revision treatments tailored to restore both appearance and function.</p>
+            </div>
+
+            <section class="treatment-details">
+                <h2>Understanding Scar Revision</h2>
+                <p>Scar revision is a set of procedures designed to improve the appearance of scars, making them less noticeable and more consistent with your surrounding skin tone and texture. Whether caused by surgery, trauma, acne, or burns, each scar is unique—and so is the treatment plan.</p>
+                <p>While it’s important to understand that no scar can be completely erased, the goal of scar revision is to achieve a significant cosmetic improvement and in some cases, restore mobility or function if the scar tissue is restrictive.</p>
+
+                <hr>
+
+                <h2>Common Types of Scars We Treat</h2>
+                <p>At Aviva Aesthetics, Dr. Ravuru evaluates each case individually and provides treatments for:</p>
+                <ul class="services-list">
+                    <li>**Hypertrophic Scars:** Raised scars that stay within the boundary of the original wound.</li>
+                    <li>**Keloid Scars:** Overgrown, raised scars that extend beyond the original injury.</li>
+                    <li>**Atrophic Scars:** Sunken or pitted scars often seen in cases of acne or chickenpox.</li>
+                    <li>**Contracture Scars:** Typically caused by burns, these scars can restrict movement.</li>
+                    <li>**Post-Surgical Scars:** Scars resulting from previous surgeries or procedures.</li>
+                </ul>
+
+                <hr>
+
+                <h2>Our Advanced Treatment Options</h2>
+                <p>Dr. Saideep Ravuru brings a comprehensive and customized approach to scar revision, utilizing a range of state-of-the-art modalities:</p>
+                <ul class="services-list">
+                    <li>**Surgical Scar Revision:** Precisely excising and re-suturing scars to reduce their prominence.</li>
+                    <li>**Laser Therapy:** Non-invasive laser treatments to smooth skin texture and reduce pigmentation.</li>
+                    <li>**Steroid Injections:** Ideal for flattening hypertrophic and keloid scars.</li>
+                    <li>**Dermal Fillers:** Used for lifting depressed scars to improve skin surface evenness.</li>
+                    <li>**Microneedling and PRP:** Enhances skin regeneration and promotes collagen production.</li>
+                    <li>**Topical Silicone Therapy:** A non-invasive option to soften and fade newer scars.</li>
+                    <li>**Fat Grafting:** For volume restoration in atrophic or indented scars.</li>
+                </ul>
+
+                <hr>
+
+                <h2>Why Choose Dr. Saideep Ravuru?</h2>
+                <p>With years of experience in reconstructive and aesthetic plastic surgery, Dr. Ravuru combines technical expertise with an artist’s eye for detail. At Aviva Aesthetics, patient care is personalized, compassionate, and rooted in delivering natural-looking, long-lasting results.</p>
+                <p>Dr. Ravuru ensures each patient undergoes a thorough consultation, where goals, concerns, and treatment expectations are openly discussed. The result? A customized plan designed not just to treat the scar—but to restore your confidence.</p>
+
+                <p class="final-words">If you’re bothered by a scar and are considering treatment, schedule a consultation at Aviva Aesthetics. With the skillful care of Dr. Saideep Ravuru, you can take the first step toward smoother, more even skin.</p>
+
+                <section class="book-appointment">
+                    <h2>Your Journey to Clearer Skin Starts Here</h2>
+                    <p>Book your appointment today and discover how advanced scar revision can help you look and feel your best.</p>
+                    <a href="index.html#book" class="book-appointment-button">Book Your Consultation Now</a>
+                </section>
+            </section>
+        </article>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-column brand-info">
+                <img src="assets/images/logo.PNG" alt="Aviva Aesthetics Logo" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/150x50/D4AF37/000000?text=Aviva+Logo';">
+                <p>Aviva Aesthetics is one of the leading aesthetic clinics in Karimnagar, offering a comprehensive range of skin, hair, and body treatments.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/dr_haripriyaavivaaesthetics" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="http://youtube.com/YOUR_CHANNEL" target="_blank" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column quick-links">
+                <h4>Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html" id="home-link">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="plastic-surgery.html">Services</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                    <li><a href="index.html#book">Contact Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column useful-links">
+                <h4>Useful Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms and Conditions</a></li>
+                    <li><a href="#disclaimer">Disclaimer</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column make-appointment">
+                <h4>Make Appointment</h4>
+                <p class="clinic-hours">10 AM - 7 PM, Monday - Saturday</p>
+                <p class="clinic-hours">Sunday - Closed</p>
+
+                <div class="call-today-box">
+                    <div class="call-today-content">
+                        <div class="call-icon-wrapper">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="call-text-numbers">
+                            <p class="call-today-text">Call Us Today</p>
+                            <p class="call-today-number">(+91) 9129912945</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="footer-divider">
+
+        <div class="footer-bottom">
+            <p>© 2025 AvivaAesthetics.com. All rights reserved.</p>
+            <p>Powered by mallikdev</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919129912945"
+        class="whatsapp-float"
+        target="_blank"
+        aria-label="Chat on WhatsApp">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+    </a>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Script for footer home link (if applicable in your external script)
+        /*
+        document.getElementById('home-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        */
+    </script>
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>

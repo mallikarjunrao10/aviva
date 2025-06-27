@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dermatology Services - Aviva Aesthetics</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Basic dropdown styling */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {background-color: #ddd;}
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Consistent heading colors based on your theme for MAIN CONTENT SECTIONS */
+        .main-heading,
+        .doctor-info h2,
+        .service-categories h3,
+        .section-title {
+            color: #D4AF37; /* Consistent theme golden color */
+        }
+
+        .doctor-treatment-card-content h3 {
+            color: black; /* Black for individual treatment card headings */
+        }
+
+        .main-heading {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem; /* Adjusted for better hierarchy */
+        }
+
+        /* --- LAYOUT FOR DOCTOR INFO AND SERVICES CATEGORIES --- */
+        .doctor-services-layout {
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column on small screens */
+            gap: 40px; /* Space between the two sections */
+            max-width: 1200px;
+            margin: 40px auto; /* Add some margin top/bottom */
+            padding: 0 20px; /* Padding for smaller screens */
+            align-items: start;
+        }
+
+        @media (min-width: 992px) {
+            .doctor-services-layout {
+                grid-template-columns: 2fr 1fr; /* Doctor info takes 2/3, services takes 1/3 */
+                gap: 40px;
+            }
+        }
+        /* --- END NEW LAYOUT --- */
+
+        .about-doctor {
+            display: flex;
+            flex-direction: column; /* Stack image and info on small screens */
+            align-items: flex-start; /* Align content to the start (top) of the flex container */
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            min-height: 480px; /* Adjusted min-height for better visual balance */
+        }
+
+        @media (min-width: 768px) {
+            .about-doctor {
+                flex-direction: row; /* Side-by-side on larger screens */
+                text-align: left;
+                align-items: flex-start; /* Ensure vertical alignment is still to the top when row */
+            }
+        }
+
+        .doctor-image {
+            flex-shrink: 0; /* Prevent image from shrinking */
+            margin-bottom: 20px; /* Space below image on small screens */
+            border-radius: 8px; /* Slightly rounded corners for the box image */
+            overflow: hidden; /* Ensures the image respects the border-radius */
+            width: 180px; /* Slightly larger width for the box image on mobile */
+            height: 220px; /* Proportionately taller for mobile */
+            border: 1px solid #e0d0b0; /* Softer border for the box image */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for the image box */
+        }
+        @media (min-width: 768px) {
+            .doctor-image {
+                margin-right: 30px; /* Space to the right of image on larger screens */
+                margin-bottom: 0;
+                width: 280px; /* Wider for desktop */
+                height: 350px; /* Taller for desktop */
+            }
+        }
+
+        .doctor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image fills the container */
+            display: block;
+        }
+
+        .doctor-info {
+            flex-grow: 1; /* Allows info to take remaining space */
+            text-align: center; /* Default for small screens */
+        }
+        @media (min-width: 768px) {
+            .doctor-info {
+                text-align: left; /* Align text to left on larger screens */
+            }
+        }
+
+        .doctor-info h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .doctor-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .doctor-info strong {
+            color: #D4AF37; /* Consistent theme color for strong text */
+        }
+
+        /* Our Services Overview (Now beside doctor info) */
+        .our-services-overview {
+            background-color: #fdfdfd; /* White */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: auto; /* CRUCIAL: Let the height be determined by its content */
+            overflow: visible; /* CRUCIAL: Ensure content is NOT hidden by overflow */
+        }
+
+        .service-categories h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 10px;
+            padding: 12px 18px; /* Slightly more padding for a larger touch area */
+            border-radius: 8px; /* Slightly more rounded corners */
+            background-color: #fcf8f3; /* Very light, subtle background (pale cream/gold) */
+            border: 1px solid #f0e0d0; /* Softer border for definition */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .category-list li a {
+            text-decoration: none;
+            color: #000000; /* Consistent theme color for service links */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .category-list li:hover { /* Simplified hover, applies to all items */
+            background-color: #f2e2cf; /* Slightly darker on hover, still light */
+            border-color: #e0d0b0;
+        }
+
+        .category-list li a:hover { /* Applies to all links on hover */
+            color: #a68d2a; /* Darker shade of theme color on hover */
+        }
+
+        .category-list .arrow {
+            font-size: 1.2rem;
+            margin-left: 10px;
+            color: #D4AF37; /* Match arrow color with text */
+            transition: transform 0.2s ease;
+        }
+
+        .category-list li:hover .arrow { /* Applies to all arrows on hover */
+            transform: translateX(5px); /* Move arrow slightly right on hover */
+        }
+
+
+        /* Styles for the new treatment cards */
+        .doctor-treatments-section {
+            padding: 40px 20px;
+            background-color: #fdfaf6; /* Light background for the section */
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .doctor-treatments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .doctor-treatment-card {
+            background-color: #fff; /* White background for cards, similar to image */
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Lighter, less spread shadow */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .doctor-treatment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .doctor-treatment-card img {
+            width: 100%;
+            height: 200px; /* Adjust as needed */
+            object-fit: cover;
+            display: block;
+        }
+
+        .doctor-treatment-card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .doctor-treatment-card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #423636; /* Specific black for card headings */
+        }
+
+        .doctor-treatment-card-content p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .treatment-buttons {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .treatment-buttons a {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-align: center;
+            flex: 1;
+        }
+
+        .more-info-btn {
+            background-color: #D4AF37; /* Applied theme color */
+            color: white; /* White text for contrast */
+            border: 1px solid #c2a36c; /* Adjusted border to complement */
+        }
+
+        .more-info-btn:hover {
+            background-color: #a68d2a; /* Darker shade on hover */
+            color: white;
+        }
+
+        .book-now-btn {
+            background-color: #61613f; /* Retained original blue/purple */
+            color: white;
+            border: 1px solid #61613f;
+        }
+
+        .book-now-btn:hover {
+            background-color: #61613f;
+            color: white;
+        }
+
+        /* Book Appointment Section */
+        .book-appointment-section {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f7f3ed; /* Softer, lighter background (very pale gold/cream) */
+            margin-top: 40px;
+            border-radius: 10px; /* Match other sections' border-radius */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            max-width: 1200px; /* Align with other main content */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .book-appointment-section .section-title {
+            color: #131210; /* Applied theme color */
+            margin-bottom: 15px;
+        }
+
+        .book-appointment-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .book-appointment-button-container {
+            margin-top: 20px;
+        }
+
+        /* Book appointment button */
+        .book-appointment-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #D4AF37; /* Applied theme color */
+            color: white; /* White text for contrast */
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            border: 1px solid #c2a36c; /* Subtle border */
+        }
+
+        .book-appointment-button:hover {
+            background-color: #000000; /* Darker shade on hover */
+            color: white; /* White text on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly more prominent shadow on hover */
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .main-heading {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .doctor-treatments-grid {
+                grid-template-columns: 1fr; /* Stack cards on smaller screens */
+            }
+            .treatment-buttons a {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            .book-appointment-button {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+            /* Revert doctor image size on small screens, adjust to be less tall */
+            .doctor-image {
+                width: 150px; /* Smaller width for mobile */
+                height: 180px; /* Proportionately taller for mobile */
+            }
+        }
+
+        .page-navigation {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex; /* Keep flex to manage internal alignment */
+            justify-content: flex-end; /* Align main content to the right */
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-navigation .navigation-links {
+            display: flex;
+            justify-content: flex-end; /* Align the link inside this div to the right */
+            width: 100%; /* Ensure it takes full width to allow right alignment */
+        }
+
+        .page-navigation .navigation-links a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            color: #D4AF37; /* Consistent theme color */
+            background-color: #fcf8f3;
+            border: 1px solid #f0e0d0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .page-navigation .navigation-links a:hover {
+            background-color: #f2e2cf;
+            color: #a68d2a; /* Darker on hover, adjusted to complement #D4AF37 */
+            border-color: #e0d0b0;
+        }
+
+
+        /* WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-float img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/60x60/c2a36c/FFFFFF?text=Logo';" />
+            
+            <div class="hamburger-menu" id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="desktop-nav"> <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li class="dropdown">
+                        <a href="#">Services <i class="fas fa-chevron-down dropdown-arrow"></i></a> <div class="dropdown-content">
+                            <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                            <a href="dermatology.html">Dermatology</a>
+                            <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                            <a href="smile.html">Smile Clinic (Dental)</a>
+                            <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                            <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                            <a href="pediatrics.html">Pediatrics</a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#book">Appointment</a></li>
+                    <li><a href="index.html#team">Our Team</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <nav class="mobile-nav" id="mobile-nav">
+            <div class="mobile-nav-header">
+                <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="logo-img-mobile" onerror="this.onerror=null;this.src='https://placehold.co/60x60/c2a36c/FFFFFF?text=Logo';" />
+                <div class="close-menu" id="close-menu">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li class="mobile-dropdown">
+                    <a href="#">Services <i class="fas fa-chevron-down mobile-dropdown-arrow"></i></a>
+                    <div class="mobile-dropdown-content">
+                        <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                        <a href="dermatology.html">Dermatology</a>
+                        <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                        <a href="smile.html">Smile Clinic (Dental)</a>
+                        <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                        <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                        <a href="pediatrics.html">Pediatrics</a>
+                    </div>
+                </li>
+                <li><a href="index.html#book">Appointment</a></li>
+                <li><a href="index.html#team">Our Team</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="service-detail-page">
+        <h1 class="main-heading">Dermatology Services</h1>
+
+        <div class="doctor-services-layout">
+            <section class="about-doctor">
+                <div class="doctor-image">
+                    <img src="assets/images/doc3.JPG" alt="Dr. Samba Raju Vallala">
+                </div>
+                <div class="doctor-info">
+                    <h2>About Dr. Samba Raju Vallala</h2>
+                    <p>Our dermatologist specializes in the diagnosis and treatment of various skin diseases, including eczema, psoriasis, acne, and skin infections. With extensive expertise and a personalized approach, they focus on delivering effective treatments to restore skin health. Committed to patient care, they use advanced techniques to manage and alleviate skin conditions for long-term wellness.</p>
+                    <p><strong>Dr. Samba Raju Vallala</strong><br>MBBS, MD (Dermatology)<br>Consultant Dermatologist</p>
+                </div>
+            </section>
+
+            <section class="our-services-overview">
+                <div class="service-categories">
+                    <h3>Our Services</h3>
+                    <ul class="category-list">
+                        <li><a href="plastic-surgery.html">Plastic & Cosmetic Surgery <span class="arrow">→</span></a></li>
+                        <li><a href="dermatology.html">Dermatology <span class="arrow">←</span></a></li>
+                        <li><a href="skinandhairaesthetics.html">Skin & Hair Aesthetics <span class="arrow">→</span></a></li>
+                        <li><a href="smile.html">Smile Clinic (Dental) <span class="arrow">→</span></a></li>
+                        <li><a href="obesity-clinic.html">Obesity Clinic (Weight Loss) <span class="arrow">→</span></a></li>
+                        <li><a href="cosmetic-gynecology.html">Cosmetic Gynecology <span class="arrow">→</span></a></li>
+                        <li><a href="pediatrics.html">Pediatrics Clinic <span class="arrow">→</span></a></li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <section class="doctor-treatments-section">
+            <h2 class="section-title">Dr. Samba Raju Vallala's Specialized Dermatology Treatments</h2>
+            <div class="doctor-treatments-grid">
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Acne by Dermatologist (1).png" alt="Acne Treatment">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Acne Treatment</h3>
+                        <p>Effective solutions for managing and eliminating acne, reducing scars, and promoting clear skin.</p>
+                        <div class="treatment-buttons">
+                            <a href="acnetreatment.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Psoriasis (1).png" alt="Psoriasis Management">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Psoriasis Management</h3>
+                        <p>Comprehensive treatments to control psoriasis symptoms, reduce inflammation, and improve skin health.</p>
+                        <div class="treatment-buttons">
+                            <a href="psoriasis.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Vitiligo (1).png" alt="Vitiligo Treatment">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Vitiligo Treatment</h3>
+                        <p>Specialized therapies aimed at restoring skin pigmentation and improving the appearance of vitiligo.</p>
+                        <div class="treatment-buttons">
+                            <a href="vitiligo.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Fungal infection by Dermatologist (1).png" alt="Fungal Infections">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Fungal Infections</h3>
+                        <p>Diagnosis and effective treatment for various fungal skin infections, ensuring complete resolution.</p>
+                        <div class="treatment-buttons">
+                            <a href="fungal-infections.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Bacterial Infection (1).png" alt="Bacterial Infections">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Bacterial Infections</h3>
+                        <p>Targeted treatments for bacterial skin infections, including cellulitis, impetigo, and folliculitis.</p>
+                        <div class="treatment-buttons">
+                            <a href="bacterial-infections.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Viral skin infection (1).png" alt="Viral Infections">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Viral Infections</h3>
+                        <p>Management and treatment of common viral skin conditions like warts, herpes, and shingles.</p>
+                        <div class="treatment-buttons">
+                            <a href="viral-infections.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Dandruff.png" alt="Dandruff & Urticaria">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Dandruff </h3>
+                        <p>Solutions for scalp conditions and allergic reactions, providing relief from itching and irritation.</p>
+                        <div class="treatment-buttons">
+                            <a href="dandruff-urticaria.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/urtacia1.png" alt="Dandruff & Urticaria">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Urticaria</h3>
+                        <p>Urticaria is a skin reaction that causes raised, red, itchy rashes.</p>
+                        <div class="treatment-buttons">
+                            <a href="urticiria.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Leprosy.png" alt="Leprosy Treatment">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Leprosy Treatment</h3>
+                        <p>Expert diagnosis and multi-drug therapy for effective management and complete cure of leprosy.</p>
+                        <div class="treatment-buttons">
+                            <a href="leprosy.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/STD.png" alt="Sexually Transmitted Diseases (STDs)">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Sexually Transmitted Diseases (STDs)</h3>
+                        <p>Confidential diagnosis, treatment, and counseling for various sexually transmitted infections.</p>
+                        <div class="treatment-buttons">
+                            <a href="stds.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Tinea (1).png" alt="Tinea Infections">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Tinea Infections</h3>
+                        <p>Targeted antifungal treatments for various tinea infections, including ringworm, athlete's foot, and jock itch.</p>
+                        <div class="treatment-buttons">
+                            <a href="tinea.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Warts Treatment (1).png" alt="Warts Removal">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Warts Removal</h3>
+                        <p>Safe and effective procedures for removing warts, including cryotherapy, laser removal, and excision.</p>
+                        <div class="treatment-buttons">
+                            <a href="warts.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-treatment-card">
+                    <img src="assets/images/Herpes.png" alt="Herpes Infections Treatment">
+                    <div class="doctor-treatment-card-content">
+                        <h3>Herpes Infections Treatment</h3>
+                        <p>Management and antiviral treatments for herpes simplex virus (HSV) and herpes zoster (shingles) infections.</p>
+                        <div class="treatment-buttons">
+                            <a href="herpes.html" class="more-info-btn">More Info</a>
+                            <a href="index.html#contact" class="book-now-btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="book-appointment-section">
+            <h2 class="section-title">Ready to Address Your Skin Concerns?</h2>
+            <p>Schedule a personalized consultation with Dr. Samba Raju Vallala today.</p>
+            <div class="book-appointment-button-container">
+                <a href="index.html#book" class="book-appointment-button">Book Your Appointment Now</a>
+            </div>
+        </section>
+
+        <section class="page-navigation">
+            <div class="navigation-links">
+                <a href="skinandhairaesthetics.html" class="next-page">
+                    <span>Next Service: Skin & Hair Aesthetics →</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-column brand-info">
+                <img src="assets/images/logo.PNG" alt="Aviva Aesthetics Logo" class="footer-logo">
+                <p>Aviva Aesthetics is one of the leading aesthetic clinics in Karimnagar, offering a comprehensive range of skin, hair, and body treatments.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/dr_haripriyaavivaaesthetics" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/YOUR_PAGE" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="http://youtube.com/YOUR_CHANNEL" target="_blank" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column quick-links">
+                <h4>Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html" id="home-link">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="plastic-surgery.html">Services</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                    <li><a href="index.html#book">Contact Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column useful-links">
+                <h4>Useful Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms and Conditions</a></li>
+                    <li><a href="#disclaimer">Disclaimer</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column make-appointment">
+                <h4>Make Appointment</h4>
+                <p class="clinic-hours">10 AM - 7 PM, Monday - Saturday</p>
+                <p class="clinic-hours">Sunday - Closed</p>
+
+                <div class="call-today-box">
+                    <div class="call-today-content">
+                        <div class="call-icon-wrapper">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="call-text-numbers">
+                            <p class="call-today-text">Call Us Today</p>
+                            <p class="call-today-number">(+91) 9129912945</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="footer-divider">
+
+        <div class="footer-bottom">
+            <p>© 2025 AvivaAesthetics.com. All rights reserved.</p>
+            <p>Powered by mallikdev</p>
+        </div>
+    </footer>
+    <a href="https://wa.me/919129912945"
+        class="whatsapp-float"
+        target="_blank"
+        aria-label="Chat on WhatsApp">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+    </a>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

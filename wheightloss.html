@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obesity Clinic (Weight Loss) - Aviva Aesthetics</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/services.css">
+    <style>
+        /* Basic dropdown styling (if needed for header, though removed in reference) */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px; /* Adjust width as needed */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {background-color: #ddd;}
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .hero-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgb(39, 37, 37);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            width: 90%; /* Added for better responsiveness */
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .content-section h1 {
+            font-size: 2.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-section h2 {
+            color: #7a5a28; /* Theme color for headings */
+            font-size: 2.2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center; /* Centering for h2 elements */
+        }
+
+        .content-section h3 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            text-align: left; /* Keep h3 left-aligned as per original service pages */
+        }
+
+        .content-section p {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            list-style: disc;
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .content-section ul li {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .content-section section {
+            margin-bottom: 3rem;
+        }
+
+        .introduction {
+            margin-bottom: 3rem;
+            text-align: center; /* Centering for introduction paragraph */
+        }
+
+        .introduction p {
+            text-align: center; /* Ensuring paragraphs in introduction are centered */
+        }
+
+
+        /* Checkmark list style */
+        .content-section .checkmark-list {
+            list-style: none; /* Remove default bullet */
+            padding-left: 0;
+        }
+
+        .content-section .checkmark-list li {
+            position: relative;
+            padding-left: 30px; /* Space for the checkmark */
+            margin-bottom: 10px;
+            color: #444;
+            font-size: 1.05rem;
+            text-align: left; /* Ensure checkmark list items are left-aligned */
+        }
+
+        .content-section .checkmark-list li::before {
+            content: '✅'; /* Checkmark character */
+            position: absolute;
+            left: 0;
+            color: #7a5a28; /* Adjust checkmark color if needed */
+            font-size: 1.2em;
+            top: 0; /* Align with the top of the text */
+        }
+
+        .book-appointment {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .book-appointment-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: #e0d0b0; /* Lighter gold/brown from your palette */
+            color: #7a5a28; /* Darker text for contrast */
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #c2a36c;
+            margin-top: 2rem;
+        }
+
+        .book-appointment-button:hover {
+            background-color: #c2a36c; /* Slightly darker on hover */
+            color: white; /* White text on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .content-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .content-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .content-section p,
+            .content-section ul li,
+            .content-section .checkmark-list li {
+                font-size: 1rem;
+            }
+            .hero-section {
+                height: 300px; /* Adjust hero height for mobile */
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .content-section .checkmark-list li {
+                padding-left: 25px; /* Adjust padding for smaller screens */
+            }
+        }
+        /* WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-float img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        /* Specific styles for the single treatment card based on cosmetic gynecology reference */
+        .doctor-treatments-section {
+            padding: 40px 20px;
+            background-color: #fdfaf6;
+        }
+
+        .doctor-treatments-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column */
+            justify-items: start; /* Align to the left */
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .doctor-treatment-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 400px; /* Consistent with cosmetic gynecology card width */
+            width: 100%;
+        }
+
+        .doctor-treatment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .doctor-treatment-card img {
+            width: 100%;
+            height: 220px; /* Consistent with cosmetic gynecology card image height */
+            object-fit: cover;
+            display: block;
+        }
+
+        .doctor-treatment-card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .doctor-treatment-card-content h3 {
+            font-size: 1.5rem;
+            color: #7a5a28;
+            margin-bottom: 10px;
+            text-align: left; /* Aligned left as in cosmetic gynecology reference */
+        }
+
+        .doctor-treatment-card-content p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            text-align: left; /* Aligned left as in cosmetic gynecology reference */
+        }
+
+        .treatment-buttons {
+            display: flex;
+            justify-content: flex-start; /* Aligned left as in cosmetic gynecology reference */
+            gap: 15px; /* Increased gap for buttons */
+            margin-top: auto;
+        }
+
+        .treatment-buttons a {
+            display: inline-block;
+            padding: 10px 20px; /* Increased padding for buttons */
+            border-radius: 8px; /* More rounded corners for buttons */
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-align: center;
+            flex: none; /* Prevent buttons from stretching */
+        }
+
+        .more-info-btn {
+            background-color: #e0d0b0;
+            color: #7a5a28;
+            border: 1px solid #c2a36c;
+        }
+
+        .more-info-btn:hover {
+            background-color: #c2a36c;
+            color: white;
+        }
+
+        .book-now-btn {
+            background-color: #6a5acd;
+            color: white;
+            border: 1px solid #6a5acd;
+        }
+
+        .book-now-btn:hover {
+            background-color: #483d8b;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <img src="assets/images/logo.png" alt="Aviva Aesthetics Logo" class="logo-img" />
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#about">About</a>
+                        <div class="dropdown-content">
+                            <a href="about-dr.html">About Doctor</a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#exclusives">Exclusives</a></li>
+                    <li class="dropdown">
+                        <a href="#">Services</a>
+                        <div class="dropdown-content">
+                            <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                            <a href="dermatology.html">Dermatology</a>
+                            <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                            <a href="smile.html">Smile Clinic (Dental)</a>
+                            <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                            <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#vouchers">Vouchers</a></li>
+                    <li><a href="index.html#contact">Appointment</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="index.html#team-section">Our Team</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <img src="assets/images/obseityhero.png" alt="Weight Loss Clinic">
+        <div class="hero-content">
+            
+            
+        </div>
+    </section>
+
+    <section class="content-section">
+        <article class="treatment-info">
+            <h1>Authentic Obesity & Weight Loss Management by Qualified Nutritionist at Aviva Aesthetics, Karimnagar</h1>
+            <h2 class="introduction">No Fad Diets. No Fake Powders. Just Science-Backed, Sustainable Results.</h2>
+
+            <div class="introduction">
+                <p>Obesity is a growing concern that affects not only appearance but also overall health. It increases the risk of diabetes, heart disease, joint pain, and more. At Aviva Aesthetics, Karimnagar, we believe in safe, natural, and sustainable weight loss — guided by our qualified nutritionist, without using artificial powders, crash diets, or unsafe shortcuts.</p>
+            </div>
+
+            <section class="treatment-details">
+                <h2>What Makes Our Approach Different?</h2>
+                <p>Unlike trendy “quick fixes,” our program focuses on real food, real science, and real results. We do not promote fake protein shakes, weight loss powders, or extreme starvation diets.</p>
+
+                <h2>Our Holistic Weight Loss Method Includes:</h2>
+                <ul class="checkmark-list">
+                    <li>Personalized Diet Plans: Crafted to suit your lifestyle, preferences, and medical history — using local, seasonal, and home-style foods.</li>
+                    <li>Scientific Nutritional Guidance: Balanced intake of macronutrients (carbohydrates, proteins, fats) and micronutrients — no cutting out essential food groups.</li>
+                    <li>Behavioral & Lifestyle Modifications: We help you build healthier habits for long-term success — including mindful eating, improved sleep, and reduced stress.</li>
+                    <li>Regular Monitoring & Motivation: Ongoing support, progress tracking, and meal adjustments as your body changes.</li>
+                    <li>Exercise Guidance: Simple, practical movement routines tailored to your fitness level — no gym pressure.</li>
+                </ul>
+
+                <h2>What We Don’t Recommend:</h2>
+                <ul class="checkmark-list">
+                    <li>No fake protein powders or expensive supplements</li>
+                    <li>No crash or starvation diets</li>
+                    <li>No false promises of “instant” weight loss</li>
+                    <li>No harmful pills or gimmicks</li>
+                </ul>
+
+                <h2>Why Choose Aviva Aesthetics?</h2>
+                <ul class="checkmark-list">
+                    <li>Qualified & Certified Nutritionist</li>
+                    <li>Evidence-based, non-commercial approach</li>
+                    <li>Focus on Indian food & local eating habits</li>
+                    <li>Medical support available for comorbidities (diabetes, PCOS, etc.)</li>
+                    <li>One-on-one support for long-term lifestyle change</li>
+                </ul>
+
+                <section class="book-appointment">
+                    <h2>Start Your Natural Weight Loss Journey Today</h2>
+                    <p>If you’re struggling with obesity and want to lose weight the healthy, authentic way, we’re here to help. Visit Aviva Aesthetics, Karimnagar and meet our expert nutritionist for a personalized consultation.</p>
+                    <p>📞 Call now to take your first step toward a healthier life.</p>
+                    <a href="index.html#contact" class="book-appointment-button">Book Your Consultation Now</a>
+                </section>
+            </section>
+        </article>
+    </section>
+
+    <footer style="background-color: #c2a36c; color: white; padding: 3rem 1rem;">
+        <div style="max-width: 1100px; margin: auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
+            <div style="flex: 1; min-width: 200px;">
+                <h3>Aviva Aesthetics</h3>
+                <p>Premium aesthetic treatments and procedures by Dr. Haripriya, providing exceptional care and natural-looking results.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="https://instagram.com/dr_haripriyaavivaaesthetics" target="_blank" style="margin-right: 10px;">
+                        <img src="assets/images/icons8-instagram-48.png" alt="Instagram" width="24">
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <img src="assets/images/icons8-facebook-48.png" alt="Facebook" width="24">
+                    </a>
+                </div>
+            </div>
+
+            <div style="flex: 1; min-width: 150px;">
+                <h4>Explore Services</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="plastic-surgery.html" style="color: white; text-decoration: none;">Plastic & Cosmetic Surgery</a></li>
+                    <li><a href="dermatology.html" style="color: white; text-decoration: none;">Dermatology</a></li>
+                    <li><a href="skinandhairaesthetics.html" style="color: white; text-decoration: none;">Skin & Hair Aesthetics</a></li>
+                    <li><a href="smile.html" style="color: white; text-decoration: none;">Smile Clinic (Dental)</a></li>
+                    <li><a href="obesity-clinic.html" style="color: white; text-decoration: none;">Obesity Clinic (Weight Loss)</a></li>
+                    <li><a href="cosmetic-gynecology.html" style="color: white; text-decoration: none;">Cosmetic Gynecology</a></li>
+                </ul>
+            </div>
+
+            <div style="flex: 1; min-width: 150px;">
+                <h4>Services</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li>Facial Treatments</li>
+                    <li>Injectables</li>
+                    <li>Skin Rejuvenation</li>
+                    <li>Body Contouring</li>
+                    <li>Hair Restoration</li>
+                    <li>Wellness Therapies</li>
+                </ul>
+            </div>
+
+            <div style="flex: 1; min-width: 200px;">
+                <h4>Contact Information</h4>
+                <p><strong>Location:</strong> Court Chowrasta, Biba showroom, Karimnagar</p>
+                <p><strong>Phone:</strong> +91 9129912945</p>
+                <p><strong>Email:</strong> info@aviva-aesthetics.com</p>
+            </div>
+        </div>
+    </footer>
+    <a href="https://wa.me/919129912945"
+        class="whatsapp-float"
+        target="_blank"
+        aria-label="Chat on WhatsApp">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+    </a>
+    <script src="assets/js/scripts.js"></script>
+</body>
+</html>

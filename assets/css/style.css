@@ -1,0 +1,3139 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fffefb;
+    color: #333;
+}
+
+
+/* ... other global styles ... */
+
+/* Navigation */
+.nav-container {
+    background-color: #2F5353;
+    border-bottom: 1px solid #4F7373;
+    display: flex;
+    justify-content: space-between; /* Keeps logo left, creates space to the right for nav */
+    align-items: center;
+    padding: 1rem 2rem;
+    position: relative;
+    z-index: 1000;
+    /* Remove any 'gap' or 'justify-content: flex-end;' from here */
+}
+
+.logo {
+    color: #FFFFFF; /* Changed to white for visibility on dark background */
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.logo-img { /* Assuming this is the element representing your logo */
+    height: 80px;
+    object-fit: contain;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    /* No margin-right: auto or absolute positioning here */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem; /* Space between individual nav items (About, Services, etc.) */
+
+    /* ***** THESE ARE THE KEY CHANGES TO CENTER THE NAV BLOCK AFTER THE LOGO ***** */
+    margin-left: auto; /* Pushes the nav-links block as far right as possible */
+    margin-right: auto; /* Then pulls the nav-links block back to the left, centering it in the remaining space */
+}
+.nav-links a {
+    color: #FFFFFF; /* Changed to white for visibility on dark background */
+    text-decoration: none;
+    font-weight: 500;
+    position: relative; /* Needed for the ::after pseudo-element positioning */
+    padding-bottom: 5px; /* Space for the underline */
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #D4AF37; /* Gold color */
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links .dropdown {
+    position: relative;
+}
+
+.nav-links .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 220px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1001;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    top: 100%;
+    left: 0;
+}
+
+.nav-links .dropdown-content a {
+    color: #333333;
+    padding: 12px 16px;
+    text-decoration: none; /* Ensure no underline */
+    display: block;
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #ffffff;
+}
+
+.nav-links .dropdown-content a:hover {
+    background-color: #f8f8f8;
+    color: #bfa37c; /* Changed to match new brand color */
+}
+
+.nav-links .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* New Hero Section Styles - Adjusted for compactness */
+.hero-section {
+    width: 100%;
+    background-color: #f8f6f3; /* Light background similar to reference */
+    padding: 2rem 2rem; /* Reduced vertical padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide overflow for animations */
+    min-height: calc(100vh - 60px); /* Ensure hero takes up most of viewport, considering nav height */
+}
+
+.hero-content-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    max-width: 1200px;
+    width: 100%;
+    gap: 1.5rem; /* Reduced gap */
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-left {
+    flex: 1;
+    min-width: 300px; /* Ensure content doesn't get too narrow */
+    padding-right: 1rem; /* Reduced space between text and image */
+    opacity: 0; /* Start hidden for animation */
+    transform: translateX(-100%); /* Start off-screen left */
+    animation: slideInLeft 1s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Animation */
+}
+
+.hero-right {
+    flex: 1;
+    min-width: 300px; /* Ensure image doesn't get too narrow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Start hidden for animation */
+    transform: translateX(100%); /* Start off-screen right */
+    animation: slideInRight 1s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Animation */
+}
+
+.hero-left h1 {
+    font-size: 2.8rem; /* Slightly reduced font size */
+    color: #333;
+    margin-bottom: 1rem; /* Reduced margin */
+    line-height: 1.2;
+}
+
+.hero-left p {
+    font-size: 1rem; /* Slightly reduced font size */
+    color: #555;
+    line-height: 1.6; /* Adjusted line height */
+    margin-bottom: 0.8rem; /* Reduced margin */
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem; /* Reduced gap */
+    margin-top: 1.5rem; /* Reduced margin */
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    justify-content: flex-start; /* Align buttons to start */
+}
+
+.btn-get-started {
+    display: inline-block;
+    background-color: #E6B875; /* Brighter gold/tan */
+    color: white;
+    padding: 0.8rem 1.8rem; /* Reduced padding */
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+    opacity: 0; /* Start hidden for animation */
+    transform: translateX(-50px); /* Start slightly off-screen left */
+    animation: slideInButtonLeft 0.8s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Animation */
+    animation-delay: 1s; /* Delay after main content animates */
+}
+
+.btn-get-started:hover {
+    background-color: #007bff; /* Changed to blue on hover */
+    transform: translateY(-3px); /* Lift further */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* More intense shadow on hover */
+}
+
+.btn-watch-video {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #E6B875; /* Brighter gold/tan for text */
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid #E6B875; /* Brighter gold/tan border */
+    padding: 0.8rem 1.8rem; /* Reduced padding */
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for lighter button */
+    opacity: 0; /* Start hidden for animation */
+    transform: translateX(50px); /* Start slightly off-screen right */
+    animation: slideInButtonRight 0.8s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Animation */
+    animation-delay: 1.2s; /* Slightly longer delay for the second button */
+}
+
+.btn-watch-video:hover {
+    background-color: #007bff; /* Changed to blue on hover */
+    color: white; /* Ensure text is white on blue background */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-color: #007bff; /* Change border to blue on hover */
+}
+
+.btn-watch-video .play-icon {
+    width: 20px; /* Reduced icon size */
+    height: 20px; /* Reduced icon size */
+    /* Adjust filter to match the new brighter brand color */
+    filter: invert(70%) sepia(20%) saturate(1030%) hue-rotate(345deg) brightness(85%) contrast(85%);
+    transition: filter 0.3s ease;
+}
+
+.btn-watch-video:hover .play-icon {
+    filter: invert(100%) sepia(0%) saturate(7499%) hue-rotate(247deg) brightness(108%) contrast(100%); /* White on hover */
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 500px; /* Adjusted max-height for image from 450px to 500px */
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    object-fit: cover; /* Changed to cover to make sure it fills the space */
+}
+
+/* Keyframe Animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInButtonLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInButtonRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive adjustments for Hero Section */
+@media (max-width: 992px) {
+    .hero-content-container {
+        flex-direction: column; /* Stack columns on smaller screens */
+        text-align: center;
+    }
+
+    .hero-left {
+        padding-right: 0;
+        padding-bottom: 2rem; /* Add space below text when stacked */
+        animation: none; /* Disable slide-in for stacked layout if preferred, or adjust */
+        transform: none;
+        opacity: 1;
+    }
+
+    .hero-right {
+        animation: none; /* Disable slide-in for stacked layout */
+        transform: none;
+        opacity: 1;
+    }
+
+    .hero-left h1 {
+        font-size: 2.2rem; /* Further reduced font size for mobile */
+    }
+
+    .hero-buttons {
+        justify-content: center; /* Center buttons when stacked */
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-left h1 {
+        font-size: 1.8rem; /* Even smaller for very small screens */
+    }
+
+    .hero-left p {
+        font-size: 0.9rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column; /* Stack buttons on very small screens */
+        align-items: center;
+    }
+
+    .btn-get-started, .btn-watch-video {
+        width: 80%; /* Make buttons wider when stacked */
+        padding: 0.7rem 1.5rem; /* Further reduced padding for mobile buttons */
+    }
+    .hero-image {
+        max-height: 350px; /* Further reduced max-height for mobile image */
+    }
+}
+
+
+/* Redesigned About Section Styles - Adjusted for compactness */
+.about-section {
+    background-color: #fffefb;
+    padding: 2rem 2rem; /* Increased vertical padding to move elements down */
+    overflow: hidden; /* For animations */
+    margin-bottom: 0; /* Ensure no gap after about section */
+}
+
+.about-container-new {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 1.5rem; /* Reduced gap between left content and right images */
+    align-items: flex-start; /* Keep align-items to flex-start or stretch if content grows taller than images */
+}
+
+.about-left-content {
+    flex: 1; /* Changed from flex: 1 1 500px; to flex: 1; for more flexibility */
+    min-width: 300px;
+    max-width: 500px; /* Added max-width to keep content narrower on large screens */
+    min-height: unset; /* Removed min-height to allow content to shrink */
+    padding-right: 1rem; /* Reduced space from the right image block */
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: slideInLeft 1s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-delay: 0.3s; /* Stagger animation */
+}
+
+.about-left-content h2 {
+    font-size: 2rem; /* Reduced font size for 'About' */
+    color: #333;
+    margin-bottom: 0.2rem; /* Reduced spacing */
+    margin-top: 2.5rem; /* Increased margin-top for 'About' heading to push it down */
+    font-weight: 700;
+}
+
+.about-left-content h2 span {
+    font-size: 2.5rem; /* Reduced font size for 'Aviva Aesthetics' */
+    color: #D4AF37;
+    font-weight: 300;
+    display: inline-block;
+    margin-left: 0.5rem;
+    line-height: 1.2;
+}
+
+.section-description-about {
+    font-size: 2.2rem; /* Increased font size significantly */
+    color: #444;
+    margin-bottom: 0.5rem; /* Reduced spacing */
+    font-weight: 500;
+    line-height: 1.4; /* Adjusted line height */
+}
+
+.about-left-content p {
+    font-size: 0.9rem; /* Further reduced text size */
+    line-height: 1.5; /* Adjusted line height */
+    color: #555;
+    margin-bottom: 0.4rem; /* Reduced spacing */
+}
+
+.about-features {
+    margin-top: 0.6rem; /* Reduced margin-top to move features up slightly */
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; /* Reduced gap */
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem; /* Reduced gap */
+    padding: 0.6rem; /* Reduced padding */
+    border-radius: 10px;
+    background-color: #fcf8f5;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.feature-item:hover {
+    background-color: #ffffff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feature-item:hover .feature-icon {
+    filter: invert(30%) sepia(80%) saturate(1200%) hue-rotate(340deg) brightness(80%) contrast(100%);
+}
+
+.feature-item:hover h3 {
+    color: #7a5a28;
+}
+
+.feature-item:hover p {
+    color: #222;
+}
+
+.feature-icon {
+    width: 35px; /* Further smaller icon */
+    height: 35px; /* Further smaller icon */
+    flex-shrink: 0;
+    transition: filter 0.3s ease;
+}
+
+.feature-item h3 {
+    font-size: 1.1rem; /* Further reduced feature heading font size */
+    color: #5a3e2b;
+    margin-bottom: 0.2rem; /* Reduced spacing */
+}
+
+.feature-item p {
+    font-size: 0.85rem; /* Further reduced paragraph font size for feature item */
+    line-height: 1.4; /* Adjusted line height */
+    color: #444;
+    margin-bottom: 0;
+}
+
+.about-right-images {
+    flex: 1; /* Allow to grow and shrink */
+    min-width: 300px; /* Allow shrinking below original design width */
+    max-width: 600px; /* Cap max width to maintain aspect ratio, similar to reference */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.about-right-images .top-images {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    justify-content: space-between; /* Distribute images */
+    flex-wrap: nowrap; /* Prevent wrapping for top images on large screens */
+    width: 100%; /* Take full available width */
+    max-width: 100%; /* Ensure it does not overflow */
+}
+
+.about-image-small {
+    width: 288px; /* Set specific width */
+    height: 400px; /* Set specific height */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    flex-shrink: 0; /* Prevent shrinking too much */
+}
+
+.about-image-large {
+    width: 600px; /* Set specific width */
+    height: 300px; /* Set specific height */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    flex-shrink: 0; /* Prevent shrinking too much */
+}
+
+
+/* Animations for About Section Images */
+.animate-image-top {
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: slideInTop 0.8s forwards ease-out;
+    animation-delay: 0.6s; /* Stagger after left content */
+}
+
+.animate-image-bottom {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideInBottom 0.8s forwards ease-out;
+    animation-delay: 0.8s; /* Stagger further */
+}
+
+/* Keyframes for About Section Images */
+@keyframes slideInTop {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInBottom {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Button styling for "More About Us" */
+.btn-more-info-about {
+    display: inline-block;
+    background-color: #E6B875; /* Brighter gold/tan */
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 25px; /* Rounded corners */
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 0.4rem; /* Further reduced margin-top to move button up */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-more-info-about:hover {
+    background-color: #007bff; /* Blue color on hover */
+    transform: translateY(-3px); /* Slight lift */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+}
+
+
+/* Responsive adjustments for About Section */
+@media (max-width: 992px) {
+    .about-container-new {
+        flex-direction: column; /* Stack content and images vertically */
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .about-left-content,
+    .about-right-images {
+        padding-right: 0; /* Remove padding from left content when stacked */
+        animation: none; /* Disable slide-in for stacked layout if preferred */
+        transform: none;
+        opacity: 1;
+        width: 100%; /* Take full width when stacked */
+        min-width: unset; /* Remove min-width constraint when stacked */
+        min-height: unset; /* Remove min-height constraint when stacked */
+        max-width: 100%; /* Allow to take full width */
+    }
+
+    .about-left-content h2,
+    .section-description-about,
+    .about-left-content p {
+        text-align: center;
+    }
+
+    .about-features {
+        align-items: center; /* Center feature items */
+    }
+
+    .feature-item {
+        flex-direction: column; /* Stack icon and text for features */
+        text-align: center;
+        align-items: center;
+    }
+
+    .about-right-images .top-images {
+        flex-direction: row; /* Keep row for top images if possible within width */
+        justify-content: center; /* Center them */
+        flex-wrap: wrap; /* Allow wrapping onto new line if space is limited */
+        width: 100%; /* Take full width */
+    }
+
+    .about-image-small {
+        width: 100%; /* On small screens, allow them to take full width */
+        max-width: 288px; /* But don't exceed original design width */
+        height: auto;
+        flex-shrink: 1;
+    }
+
+    .about-image-large {
+        width: 100%;
+        max-width: 600px; /* But don't exceed original design width */
+        height: auto;
+        flex-shrink: 1;
+    }
+}
+
+@media (max-width: 680px) { /* Adjust breakpoint for small images to stack */
+    .about-right-images .top-images {
+        flex-direction: column; /* Force top images to stack on very small screens */
+    }
+    .about-image-small {
+        width: 100%; /* Ensure full width when stacked */
+    }
+}
+
+
+@media (max-width: 480px) {
+    .about-left-content h2 {
+        font-size: 2rem;
+    }
+    .section-description-about {
+        font-size: 1.1rem;
+    }
+    .about-image-small,
+    .about-image-large {
+        height: auto;
+        max-width: 100%; /* Let them scale down to fit any screen */
+    }
+}
+
+
+/* --- Monthly Exclusives Section Styles --- */
+.treatments-services-section {
+    background-color: #fffefb;
+    padding: 0 2rem 4rem 2rem; /* Reduced top padding to remove gap, kept bottom padding */
+    text-align: center;
+}
+
+.treatments-services-section .section-title {
+    font-size: 2.7rem; /* Matched to About section h2 */
+    color: #D4AF37; /* Changed to gold */
+    margin-bottom: 0.5rem; /* Reduced margin to remove space between headings */
+    font-weight: 700;
+}
+
+.treatments-services-section .section-description {
+    font-size: 1.8rem; /* Increased size */
+    color: #000000; /* Changed to black */
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.treatments-services-section .section-description .highlight-text {
+    color: #7a5a28; /* Darker brown/gold for highlight */
+    font-weight: 700; /* Bolder font for highlight */
+}
+
+.treatments-grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-block {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.service-block img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.service-block-content {
+    padding: 1rem; /* Reduced padding */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute content and buttons */
+    gap: 0.2rem; /* Reduced gap between elements within the content block */
+}
+
+.service-buttons {
+    display: flex;
+    gap: 0.6rem; /* Reduced gap between buttons */
+    margin-top: 0.2rem; /* Reduced margin top */
+    justify-content: center;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.view-services-btn {
+    display: inline-block;
+    background-color: #E6B875; /* Brighter gold/tan */
+    color: white;
+    padding: 0.6rem 1.2rem; /* Reduced padding for more compact buttons */
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+    border: none; /* No border for solid button */
+}
+
+.view-services-btn:hover {
+    background-color: #007bff; /* Blue on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.book-now-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #E6B875; /* Brighter gold/tan for text */
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid #E6B875; /* Brighter gold/tan border */
+    padding: 0.6rem 1.2rem; /* Reduced padding for more compact buttons */
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for lighter button */
+}
+
+.book-now-btn:hover {
+    background-color: #007bff; /* Blue on hover */
+    color: white; /* Ensure text is white on blue background */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-color: #007bff; /* Change border to blue on hover */
+}
+
+/* Ensure the arrow also changes color */
+.book-now-btn::after {
+    content: " →";
+    transition: color 0.3s ease; /* Ensure transition for the arrow color */
+}
+
+
+.service-block-content h4 {
+    font-size: 0.9rem;
+    color: #c5a880;
+    margin-bottom: 0.2rem; /* Further reduced margin */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.service-block-content h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.2rem; /* Further reduced margin */
+    line-height: 1.3;
+}
+
+.service-block-content p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 0.2rem; /* Further reduced margin */
+    flex-grow: 1;
+}
+
+/* Responsive adjustments for the Monthly Exclusives section */
+@media (max-width: 1200px) {
+    .treatments-grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .treatments-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    .service-block img {
+        height: 180px;
+    }
+    .service-block-content {
+        padding: 1rem;
+    }
+    .service-block-content h3 {
+        font-size: 1.3rem;
+    }
+    .service-block-content p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .treatments-services-section .section-title {
+        font-size: 2rem;
+    }
+    .treatments-grid-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .service-buttons {
+        flex-direction: column; /* Stack buttons on very small screens */
+        align-items: center;
+    }
+    .view-services-btn, .book-now-btn {
+        width: 80%; /* Make buttons wider when stacked */
+    }
+}
+
+/* New Section: For Him / For Her Styles */
+.gender-treatments-section {
+    background-color: #fffefb;
+    padding: 0 2rem 4rem 2rem; /* Reduced top padding to remove gap, kept bottom padding */
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto; /* Ensure no external margin */
+}
+
+.gender-treatments-section .section-title {
+    font-size: 2.7rem;
+    color: #333;
+    margin-top: 1.5rem; /* Reduced margin to pull heading up */
+    margin-bottom: 1.5rem; /* Reduced margin */
+    font-weight: 700;
+}
+
+.gender-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem; /* Reduced margin for spacing */
+    gap: 1.5rem; /* Space between buttons */
+}
+
+.gender-tab-button {
+    background-color: #E6B875; /* Changed to gold */
+    color: white; /* Changed to white */
+    padding: 0.8rem 2.5rem; /* Increased padding */
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem; /* Slightly larger font */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.gender-tab-button:hover {
+    background-color: #5a3e2b; /* Changed hover to a dark brown/gold for consistency */
+    color: white; /* Remains white on hover */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Consistent shadow */
+}
+
+.gender-tab-button.active {
+    background-color: #c2a36c; /* Active background */
+    color: white;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.gender-content-container {
+    padding: 1.5rem; /* Reduced padding */
+    background-color: #fcf8f5; /* Light background for content area */
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    height: auto; /* Allow height to adjust to content */
+    overflow: hidden; /* Prevent content from overflowing if it exceeds container height */
+}
+
+.gender-content {
+    /* Instead of `display: none;` and `display: block;`, use `visibility` and `position`
+       for smoother transitions when combined with `opacity` and `transform`. */
+    visibility: hidden; /* Hide by default */
+    position: absolute; /* Take out of document flow to prevent affecting layout */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out, visibility 0.5s ease-out; /* Add visibility to transition */
+    width: 100%; /* Ensure it takes full width when hidden */
+}
+
+.gender-content.active {
+    visibility: visible; /* Show active content */
+    position: static; /* Place back in document flow */
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s; /* Ensure active content transition is immediate */
+}
+
+.gender-content-inner {
+    display: flex;
+    flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+    gap: 1.5rem; /* Reduced gap */
+    justify-content: center;
+    align-items: flex-start; /* Align items to start to prevent stretching unnecessarily */
+    min-height: unset; /* Removed min-height to allow content to shrink/fit */
+    height: auto; /* Ensure it takes height of its content */
+}
+
+.gender-image-wrapper {
+    flex: 1 1 400px; /* Flex-basis added: Image takes at least 400px before shrinking/wrapping */
+    max-width: 500px; /* Max width for image to prevent it from getting too large on very wide screens */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    height: auto; /* allow height to adjust based on content and max-height */
+    max-height: 470px; /* Adjusted max-height for the image wrapper */
+    padding-bottom: 0; /* Remove any default padding-bottom */
+}
+
+.gender-treatment-image {
+    width: 100%;
+    height: auto; /* allow height to be natural */
+    max-height: 470px; /* Adjusted max-height for the image itself */
+    object-fit: contain; /* Changed to 'contain' to ensure full image visibility without cropping */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: filter 0.5s ease-out;
+}
+
+/* Dim effect for non-active image */
+.gender-content:not(.active) .gender-treatment-image {
+    filter: brightness(0.6) grayscale(0.8); /* Dim and desaturate */
+}
+
+.gender-treatment-list {
+    flex: 1 1 450px; /* Flex-basis added: List takes at least 450px before shrinking/wrapping */
+    max-width: 60%; /* Limit list width on desktop for better layout balance */
+    text-align: left;
+    height: auto; /* Allow height to adjust naturally */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align categories to start */
+}
+
+.treatment-category {
+    margin-bottom: 0.5rem; /* Reduced margin */
+    flex-grow: 0; /* Do not force categories to grow, let them fit content */
+}
+
+.treatment-category h3 {
+    font-size: 1.5rem;
+    color: #5a3e2b;
+    margin-bottom: 0.3rem; /* Reduced margin */
+    padding-bottom: 0.3rem; /* Reduced padding */
+    border-bottom: 2px solid #e9dbc4;
+}
+
+.treatment-category ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.4rem; /* Reduced gap */
+}
+
+.treatment-category li {
+    font-size: 1rem;
+    color: #444;
+    padding: 0.2rem 0; /* Reduced padding */
+}
+
+/* Responsive adjustments for Gender Specific Treatments */
+@media (max-width: 992px) { /* Added a tablet breakpoint for more control */
+    .gender-content-inner {
+        flex-direction: column; /* Stack image and list */
+        text-align: center;
+        gap: 2rem; /* Increase gap when stacked */
+    }
+
+    .gender-image-wrapper {
+        flex: 1 1 auto; /* Allow image wrapper to take its natural size */
+        max-width: 80%; /* Limit image width on tablet */
+    }
+
+    .gender-treatment-image {
+        max-height: 400px; /* Adjust max-height for tablet images */
+        object-fit: contain; /* Maintain 'contain' for full visibility */
+    }
+
+    .gender-treatment-list {
+        flex: 1 1 auto; /* Allow list to take its natural size */
+        max-width: 90%; /* Allow list to take more width on tablet */
+        padding: 0 1rem; /* Add horizontal padding for readability */
+    }
+
+    .treatment-category ul {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Keep multiple columns if space allows */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .gender-tabs {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .gender-tab-button {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .gender-content-inner {
+        /* Already flex-direction: column from 992px breakpoint */
+        text-align: center;
+        min-height: unset;
+        gap: 1.5rem; /* Reduce gap slightly more for mobile */
+    }
+    .gender-image-wrapper {
+        width: 95%; /* Adjust image wrapper width for mobile */
+    }
+    .gender-treatment-image {
+        max-height: 300px; /* Further adjust max-height for mobile images */
+    }
+    .gender-treatment-list {
+        min-width: unset;
+        width: 100%; /* List takes full width on mobile */
+        height: auto;
+        padding: 0 0.5rem; /* Minimal horizontal padding */
+    }
+    .treatment-category ul {
+        grid-template-columns: 1fr; /* Force single column for list items on smaller phones */
+        gap: 0.8rem; /* Slight increase in gap for readability when stacked */
+    }
+}
+
+@media (max-width: 480px) {
+    .gender-tab-button {
+        font-size: 1.0rem;
+        padding: 0.6rem 2rem;
+    }
+    .gender-content-container {
+        padding: 1rem; /* Further reduce padding for very small screens */
+    }
+    .gender-content-inner {
+        gap: 1rem; /* Further reduce gap */
+    }
+    .treatment-category h3 {
+        font-size: 1.3rem;
+    }
+    .gender-treatment-image {
+        max-height: 250px; /* Smallest max-height for very small screens */
+    }
+}
+/* before and after section css */
+#before-after {
+    padding: 30px 20px; /* Reduced top padding from 60px to 30px */
+    background-color: #fffefb;
+    text-align: center;
+}
+
+/* Base section-title applies to all sections unless overridden */
+.section-title {
+    font-size: 2rem; /* Default size for section titles */
+    color: #c5a880; /* Default color for section titles */
+    margin-bottom: 30px;
+}
+
+/* Specific styling for Before & After Transformations heading */
+#before-after .section-title {
+    color: #D4AF37; /* Corrected to gold to match "Tailored Treatments" */
+    font-weight: 700; /* Made the heading bold */
+    font-size: 2.7rem; /* Corrected font size to match "Tailored Treatments" */
+}
+
+.slider-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 1rem;
+}
+
+.slide {
+    flex: 0 0 calc(33.333% - 1rem); /* Base for 3 columns */
+    box-sizing: border-box;
+    display: flex; /* Added for centering image within slide */
+    justify-content: center; /* Added for centering image within slide */
+    align-items: center; /* Added for centering image within slide */
+    overflow: hidden; /* Hide any overflow if image doesn't perfectly fit */
+    height: 300px; /* Match slide height to image height */
+}
+
+.slide img {
+    width: 100%; /* Keep 100% width to fill the slide container */
+    height: 300px; /* Set a fixed height */
+    object-fit: cover; /* This will crop the image to fit the 300x300 dimensions without distorting it */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.slider-btn:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+.slider-btn.prev {
+    left: 10px;
+}
+
+.slider-btn.next {
+    right: 10px;
+}
+
+/* FOR BETTER MOBILE RESPONSIVE DESIGN*/
+@media (max-width: 768px) {
+    .slide {
+        flex: 0 0 calc(50% - 1rem); /* For 2 columns */
+        height: 300px; /* Maintain height */
+    }
+}
+
+@media (max-width: 480px) {
+    .slide {
+        flex: 0 0 100%; /* For 1 column */
+        height: 300px; /* Maintain height */
+    }
+}
+
+/* our gallery section */
+/* Gallery Section */
+/* Gallery Section */
+.gallery-section {
+    padding: 60px 20px;
+    background-color: #f9f9f9; /* Light background for the section */
+}
+
+.gallery-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #D4AF37; /* Changed from #e91e63 to your primary gold color */
+    font-size: 2.5em; /* Adjust as needed */
+}
+
+.gallery-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Allow filters to wrap on smaller screens */
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 25px; /* Pill-shaped buttons as in your image */
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Prevent button text from wrapping */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for buttons */
+    font-size: 1em;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background-color: #E6B875; /* Changed from #e91e63 to your brighter gold/tan for consistency */
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* More prominent shadow on active/hover */
+    transform: translateY(-2px); /* Subtle lift effect on hover */
+}
+
+.gallery-grid {
+    display: grid;
+    /* Responsive grid:
+        auto-fill fills rows with as many columns as possible.
+        minmax(280px, 1fr) ensures items are at least 280px wide but scale up. */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px; /* Max width to keep content centered and readable on large screens */
+    margin: 0 auto; /* Centers the grid container */
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 10px; /* Rounded corners for the cards */
+    overflow: hidden; /* Crucial for rounded corners on inner content like images/videos */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow for cards, matching your image */
+    background-color: #fff; /* Ensure card background is white */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover for the entire card */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+}
+
+.gallery-item img {
+    height: 250px; /* This sets images to a fixed height */
+    width: 100%;
+    object-fit: cover;
+}
+
+/* CORRECTED: Added missing dot '.' for the class selector */
+.video-thumbnail {
+    height: 250px; /* This sets video containers to a fixed height */
+    width: 100%;
+    overflow: hidden;
+    position: relative; /* Added for iframe absolute positioning */
+    background-color: #000; /* Added for placeholder if video not loaded */
+}
+
+.video-thumbnail iframe {
+    height: 100%; /* The iframe fills its 250px tall parent */
+    width: 100%;
+    position: absolute; /* Added to fill the parent precisely */
+    top: 0;
+    left: 0;
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8)); /* Gradient for text readability */
+    color: #fff;
+    padding: 20px;
+    transform: translateY(100%); /* Starts hidden below the item */
+    transition: transform 0.3s ease; /* Slide up effect */
+    text-align: left;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0); /* Slides up on hover */
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1); /* Subtle zoom effect on image hover */
+}
+
+/* Class to hide items (used by JavaScript filter) */
+.gallery-item.hidden {
+    display: none;
+}
+
+/* Know More Button Styles */
+.know-more-container {
+    text-align: center;
+    margin-top: 40px; /* Space above the button */
+    padding-bottom: 20px; /* Add some padding below the button */
+}
+
+.know-more-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #D4AF37; /* Your primary gold color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.know-more-btn:hover {
+    background-color: #E6B875; /* Brighter gold/tan on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .gallery-section h2 {
+        font-size: 2em;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust min width for smaller screens */
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .filter-btn {
+        padding: 6px 15px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-section {
+        padding: 30px 10px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Single column on very small mobile screens */
+        padding: 10px;
+    }
+
+    .gallery-filters {
+        flex-direction: column; /* Stack filter buttons vertically */
+        align-items: stretch; /* Make them full width */
+    }
+}
+/* EXPERT TEAM STYLING */
+.team-section {
+    padding: 4rem 2rem;
+    /* Removed background-color: #103426; */ /* This line was removed */
+    text-align: center;
+    /* max-width: 1200px; */
+    margin: 0 auto;
+}
+
+.team-section .section-title {
+    color: #D4AF37; /* Gold color, matching other main titles */
+    font-size: 2.7rem; /* Matching size */
+    font-weight: 700; /* Bold */
+    margin-bottom: 0.5rem; /* Reduced margin */
+}
+
+.team-section .section-description {
+    color: #000000; /* Lighter green for descriptive text */
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow cards to wrap to next line */
+    gap: 1.5rem; /* Gap between cards */
+    max-width: 1200px; /* Constrain max width of the grid */
+    margin: 0 auto; /* Center the grid */
+}
+
+.team-member {
+    flex: 0 0 calc(25% - 1.5rem); /* 4 columns minus gap. Adjusted to use flex-basis for better control */
+    min-width: 200px; /* Minimum width for each card before wrapping */
+    max-width: 280px; /* Max width for each card */
+    background-color: #ffffff; /* Default background, overridden by inline styles */
+    border-radius: 10px; /* Slightly rounded corners for the whole card */
+    padding: 1.5rem; /* Padding inside the card */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    text-align: center;
+    overflow: hidden; /* Ensure image corners are handled */
+    display: flex; /* Use flexbox for inner content alignment */
+    flex-direction: column; /* Stack image and text */
+    justify-content: flex-start; /* **MODIFIED: Change from space-between to flex-start** */
+    align-items: center;    /* **ADDED: Center items horizontally** */
+}
+
+.team-member img {
+    width: 100%; /* Image fills its container */
+    height: 250px; /* **UPDATED: Increased height from 180px or your previous value** */
+    object-fit: cover; /* Crop image to fit without distortion */
+    border-radius: 8px; /* Slightly rounded corners for the image itself */
+    margin-bottom: 1rem; /* Space between image and text */
+    display: block; /* Ensures no extra space below image */
+    /* REMOVED: order: 1; */
+}
+
+.team-member .team-info {
+    /* REMOVED: flex-grow: 0; */
+    display: flex; /* Use flex for inner info alignment */
+    flex-direction: column; /* Stack name and role vertically */
+    /* REMOVED: justify-content: center; */
+    align-items: center; /* **ADDED: Center text horizontally within info** */
+    width: 100%; /* Ensure info block takes full width for centering */
+}
+
+.team-member h3 { /* Dr. Name */
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 0.25rem; /* Space between name and role */
+    line-height: 1.2;
+    /* REMOVED: order: 2; */
+}
+
+.team-member .role { /* Medical Advisor, General Physician etc. */
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0; /* **UPDATED: Removed bottom margin as experience is gone** */
+    font-weight: 500;
+    /* REMOVED: order: 3; */
+}
+
+
+/* Responsive adjustments for team section */
+@media (max-width: 1100px) {
+    .team-member {
+        flex: 0 0 calc(33.333% - 1.5rem); /* 3 columns */
+    }
+}
+
+/* Responsive adjustments for team section - UPDATE IMAGE HEIGHTS */
+@media (max-width: 768px) {
+    /* ... existing rules ... */
+    .team-member img { /* Adjusted image height for smaller screens */
+        height: 200px; /* **UPDATED** */
+    }
+}
+
+@media (max-width: 576px) {
+    /* ... existing rules ... */
+    .team-member img { /* Further adjusted image height for very small screens */
+        height: 220px; /* **UPDATED** */
+    }
+}
+/* TESTIMONIALS CLIENT*/
+.testimonials-section {
+    background-color: #fffefb;
+    padding: 4rem 2rem; /* Reverted to 4rem top padding for consistency with team-section */
+    text-align: center;
+}
+
+.testimonials-section h2 {
+    color: #D4AF37; /* Gold color, matching expert team section title */
+    font-size: 2.7rem; /* Matching expert team section title size */
+    font-weight: 700; /* Added bold font weight for consistency */
+    margin-bottom: 0.5rem;
+}
+
+.testimonials-section .subtext {
+    color: #000000; /* Changed to black, matching expert team section description */
+    margin-bottom: 2rem;
+    font-size: 1.1rem; /* Adjusted to match expert team section description size */
+    max-width: 800px; /* Added max-width for better control over text line length */
+    margin-left: auto; /* Centering the subtext */
+    margin-right: auto; /* Centering the subtext */
+}
+
+.testimonial-slider {
+    max-width: 600px;
+    margin: auto;
+    position: relative;
+}
+
+.testimonial-slide {
+    display: none;
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.testimonial-slide.active {
+    display: block;
+}
+
+.stars {
+    color: #f5b301; /* Keeping original star color unless you specify a change */
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.review {
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+h4 {
+    color: #5a3e2b; /* Keeping original name color unless you specify a change */
+    margin-bottom: 0.25rem;
+}
+
+span {
+    font-size: 0.85rem;
+    color: #777; /* Keeping original role color unless you specify a change */
+}
+
+.testimonial-dots {
+    margin-top: 1.5rem;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dot.active {
+    background-color: #a67c52; /* Keeping your active dot color as it's a good accent */
+}
+/* Css Styling for customer form */
+/* Css Styling for customer form */
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    gap: 40px; /* Space between the two columns */
+    background-color: #f8f6f3;
+    padding: 4rem 2rem; /* Consistent padding with other sections */
+    font-family: 'Segoe UI', sans-serif;
+    max-width: 1200px; /* Constrain overall section width for consistency */
+    margin: 0 auto; /* Center the entire contact section */
+}
+
+.contact-box {
+    /* Set a specific flex-basis to control width */
+    flex: 0 0 calc(45% - 20px); /* Approximately 45% of parent width, accounting for half of gap */
+    min-width: 300px; /* Minimum width before wrapping */
+    padding: 2rem; /* Added internal padding to match appointment-box and ensure content isn't too close to edges */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    /* Add background and shadow to contact-box for visual balance with appointment-box */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust heading styles to match site-wide theme */
+.contact-box h3 {
+    color: #D4AF37; /* Current gold color. Change this to a different hex code if you want a new color. */
+    font-size: 2.7rem; /* Current size. Increase or decrease this value (e.g., 3rem, 2.5rem) to change size. */
+    font-weight: 700; /* Current boldness. Change to 400 (normal), 500 (medium), or 600 (semi-bold) if you want less bold. */
+    margin-bottom: 1.5rem; /* Space below the heading. Adjust if needed. */
+    text-align: center; /* Current alignment. You could change to 'left' if you prefer. */
+    /* Add more styling properties below to refine the look: */
+}
+
+.contact-box p,
+.contact-box a {
+    color: #000000;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    text-align: left; /* Ensure text within contact box remains left-aligned */
+}
+
+.contact-box strong {
+    font-weight: 600; /* Make strong tags a bit bolder for clarity */
+}
+
+.contact-box small {
+    color: #555;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.contact-box a {
+    color: #a67c52;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.contact-box a:hover {
+    text-decoration: underline;
+}
+
+/* Appointment Box Styling */
+.appointment-box {
+    /* Set a specific flex-basis to control width, slightly larger for the form */
+    flex: 0 0 calc(55% - 20px); /* Approximately 55% of parent width, accounting for half of gap */
+    min-width: 380px; /* Minimum width for the form before wrapping */
+    background-color: #ffffff;
+    padding: 2rem; /* Internal padding */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.appointment-box h3 {
+    color: #D4AF37; /* Current gold color. Change this to a different hex code. */
+    font-size: 2.7rem; /* Current size. Adjust as above. */
+    font-weight: 700; /* Current boldness. Adjust as above. */
+    margin-bottom: 1.5rem; /* Space below the heading. Adjust if needed. */
+    text-align: center; /* Current alignment. */
+}
+
+.appointment-box form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows the form to take available vertical space */
+}
+
+.appointment-box input,
+.appointment-box select,
+.appointment-box textarea {
+    padding: 10px; /* Reduced padding for compactness */
+    margin-bottom: 10px; /* Reduced margin-bottom */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem; /* Slightly smaller font size for inputs */
+    color: #000000;
+}
+
+.appointment-box textarea {
+    resize: vertical;
+    min-height: 70px; /* Min-height for compactness */
+}
+
+/* Button Styling - Apply the gold to blue hover effect */
+.appointment-box button {
+    background-color: #97948f; /* Gold color for the button */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color and background */
+    margin-top: 10px;
+}
+
+.appointment-box button:hover {
+    background-color: #007bff; /* A shade of blue for hover - ENSURE THIS MATCHES YOUR SITE'S BLUE */
+    color: white; /* Ensure text remains white on hover */
+}
+
+/* styling for insta and facebook png images*/
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    /* CHANGE HERE: Removed justify-content: center; to make them left-aligned */
+    justify-content: flex-start; /* Aligns items to the start (left) */
+}
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .contact-box,
+    .appointment-box {
+        flex: 1 1 100%; /* Stack columns on smaller screens */
+        padding-right: 0;
+        max-width: none;
+        min-width: unset;
+        padding: 2rem; /* Consistent padding when stacked */
+    }
+
+    .appointment-box {
+        margin-top: 30px;
+    }
+
+    .contact-section {
+        padding: 3rem 20px;
+        gap: 30px;
+        flex-direction: column; /* Explicitly stack for clarity */
+        align-items: center; /* Center the stacked boxes */
+    }
+
+    .social-icons {
+        justify-content: center; /* Center social icons when columns stack on mobile */
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-section {
+        padding: 2rem 15px;
+    }
+
+    .contact-box h3,
+    .appointment-box h3 {
+        font-size: 2.2rem;
+    }
+
+    .appointment-box input,
+    .appointment-box select,
+    .appointment-box textarea {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    .appointment-box button {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+}
+/* maps and footer for last part css*/
+/* --- Footer Styles (Consolidated and New Design) --- */
+
+/* General Footer Styles */
+/* --- Global / Base Styles --- */
+/* --- Global / Base Styles (if any, add here) --- */
+
+/* For smooth scrolling - Keep this from your existing CSS */
+/* --- Global / Base Styles --- */
+/* --- Global / Base Styles --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- Footer Styles (Skin Sanctum Clone - Full Update with Logo & Full Underlines) --- */
+
+.main-footer {
+    background-color: #2F5353; /* Skin Sanctum's dark greenish background */
+    color: #E0E0E0; /* Light gray for general text */
+    padding: 3.5rem 1rem 1.5rem; /* More generous padding */
+    font-family: 'Montserrat', sans-serif; /* A clean sans-serif font like Skin Sanctum */
+    font-size: 0.9rem; /* Slightly smaller base font */
+    line-height: 1.6; /* Good line height for readability */
+}
+
+.footer-container {
+    max-width: 1200px; /* Aligned with Skin Sanctum's apparent width */
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem; /* Spacing between columns */
+    justify-content: space-between;
+    align-items: flex-start; /* Align columns to the top */
+    margin-bottom: 2rem; /* Space before the divider */
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 180px; /* Minimum width for columns before wrapping */
+}
+
+/* Specific Column Widths (Adjust if needed, these are visual estimates from Skin Sanctum) */
+.footer-column.brand-info {
+    flex: 1.5; /* Brand column wider */
+    min-width: 250px;
+    text-align: left;
+}
+
+.footer-column.quick-links,
+.footer-column.useful-links {
+    flex: 0.8;
+    min-width: 140px;
+}
+
+.footer-column.make-appointment {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Styles for the new Logo Image */
+.footer-logo {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin-bottom: 1.2rem;
+    background-color: white; /* Make sure this is present */
+    padding: 5px; /* Apply the same padding as your header logo */
+    border-radius: 5px; /* Apply the same border-radius as your header logo */
+}
+
+
+
+/* If the logo is wrapped in an anchor tag and you want it to glow gold on hover */
+.brand-info .footer-logo-link:hover .footer-logo {
+    filter: drop-shadow(0 0 5px #D4AF37) brightness(1.2);
+}
+
+
+.footer-column h4 {
+    color: #D4AF37; /* Gold color for headings */
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+/* Underline effect for headings */
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #8FD1BD;
+}
+
+.footer-column p {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+
+/* Social Links */
+.social-links {
+    margin-top: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.social-icon {
+    color: #FFFFFF;
+    font-size: 28px;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+    color: #D4AF37; /* Gold on hover */
+}
+
+
+/* Links in columns */
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-list li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-links-list a {
+    color: #E0E0E0;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-links-list a:hover {
+    color: #D4AF37; /* Gold on hover */
+}
+
+/* Clinic Hours */
+.clinic-hours {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* Call Us Today Box */
+/* --- Call Us Today Box (New, Focused Rules for Alignment) --- */
+.call-today-box {
+    background-color: #FFFFFF;
+    color: #333333;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin-top: 1.5rem;
+    display: flex; /* Flex container for the box itself to center its content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically within its parent column */
+    border: 1px solid #E0E0E0;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content; /* Ensure box only takes up needed width */
+    max-width: 90%; /* Prevent box from getting too wide on small screens */
+}
+
+.call-today-content {
+    display: flex; /* Core flex container for icon and text */
+    align-items: center; /* ALIGNS ICON AND TEXT VERTICALLY IN THE MIDDLE */
+    gap: 12px; /* Space between icon and text */
+}
+
+.call-icon-wrapper {
+    background-color: #c2a36c; /* Gold/Brown background for the icon */
+    border-radius: 6px;
+    width: 38px; /* Fixed width */
+    height: 38px; /* Fixed height */
+    display: flex; /* Flex to center the icon inside */
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Prevents icon from shrinking */
+}
+
+.call-icon-wrapper i {
+    color: #FFFFFF; /* White icon color */
+    font-size: 1.2rem;
+    line-height: 1; /* Reset line-height for the icon itself */
+    vertical-align: middle; /* Ensures icon alignment if treated as inline */
+}
+
+.call-text-numbers {
+    display: flex; /* Flex container for the two lines of text */
+    flex-direction: column; /* Stack text lines vertically */
+    justify-content: center; /* Center text vertically within this column */
+    align-items: flex-start; /* Align text to the left within this column */
+    margin: 0; /* Remove all default margins */
+    padding: 0; /* Remove all default paddings */
+    /* Add this line and adjust the value as needed */
+    transform: translateY(-1px); /* Experiment with -0.5px, -1px, 0.5px, 1px */
+}
+
+.call-today-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 0; /* Essential: remove all margins from paragraphs */
+    padding: 0; /* Essential: remove all paddings from paragraphs */
+    color: #555555;
+    white-space: nowrap; /* Keep text on one line */
+    line-height: 1.2em; /* Explicit line height */
+}
+
+.call-today-number {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333333;
+    letter-spacing: 0.02em;
+    margin: 0; /* Essential: remove all margins from paragraphs */
+    padding: 0; /* Essential: remove all paddings from paragraphs */
+    white-space: nowrap; /* Keep text on one line */
+    line-height: 1.2em; /* Explicit line height */
+}
+
+/* Make the phone icon gold on hover of the entire box */
+.call-today-box:hover .call-icon-wrapper i {
+    color: #D4AF37; /* Gold color */
+    transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Optional: Make the background of the icon wrapper also transition or change slightly */
+.call-today-box:hover .call-icon-wrapper {
+    background-color: #a67c52; /* A slightly darker gold/brown on hover, or a different shade */
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.5); /* Subtle gold glow */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Optional: Make the text within the call box also change color on hover */
+.call-today-box:hover .call-today-text,
+.call-today-box:hover .call-today-number {
+    color: #a67c52; /* A shade of gold/brown for the text on hover */
+    transition: color 0.3s ease-in-out;
+}
+/* Footer Divider */
+.footer-divider {
+    border: none;
+    border-top: 1px solid #4F7373;
+    margin: 2.5rem auto 1.5rem;
+    width: 90%;
+    max-width: 1100px;
+}
+
+/* Footer Bottom (Copyright) */
+.footer-bottom {
+    text-align: center;
+    padding-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #A0A0A0;
+    line-height: 1.4;
+}
+
+.footer-bottom p:last-child {
+    margin-top: 0.5rem;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .footer-container {
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .footer-column {
+        min-width: 200px;
+        flex: 1 1 45%;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-column.brand-info {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+
+    .footer-column.brand-info p {
+        text-align: left;
+    }
+    .footer-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-column h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .footer-logo {
+        max-width: 150px;
+    }
+
+    .footer-column h3,
+    .footer-column h4 {
+        text-align: center;
+    }
+
+    .footer-links-list li,
+    .clinic-hours {
+        text-align: center;
+    }
+
+    .call-today-box {
+        width: fit-content;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-column h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-footer {
+        padding: 2rem 0.5rem 1rem;
+    }
+    .footer-container {
+        gap: 1.5rem;
+    }
+    .footer-logo {
+        max-width: 120px;
+    }
+}
+/* map section */
+/* map section */
+/* GLOBAL STYLES / COMMON COMPONENTS - Place this near the top of your style.css */
+.section-title {
+    font-size: 2.7rem; /* Matches your other large headings */
+    color: #D4AF37; /* Your consistent gold color */
+    margin-bottom: 1.5rem; /* Standard spacing below titles */
+    font-weight: 700; /* Bold */
+    text-align: center; /* Ensures all headings with this class are centered */
+}
+
+/* --- Your Existing Contact Section Styles (for background "cut" verification) --- */
+.contact-section {
+    /* ... (rest of your contact-section styles) ... */
+    background-color: #f8f6f3; /* This distinct background color is crucial for the "cut" */
+    /* ... (rest of your contact-section styles) ... */
+}
+
+/* --- Map Section Styles --- */
+.map-section {
+    padding: 4rem 2rem; /* Consistent padding with other main sections */
+    background-color: #fffefb; /* Distinct light background for this section */
+    text-align: center; /* This will center the h2.section-title within this section */
+}
+
+/* No specific .map-section .section-title rule is needed here IF the global .section-title is effective */
+
+.map-container {
+    max-width: 1000px;
+    margin: 0 auto; /* Centers the map iframe block */
+    padding: 0 1rem;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 400px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.map-link {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.map-link a {
+    color: #D4AF37; /* Accent gold for the link */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.map-link a:hover {
+    color: #007bff; /* Consistent blue hover for links/buttons */
+}
+
+/* --- Your Footer Styles (for reference only, no changes) --- */
+
+/* whatsupp float button css */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: #25d366;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Spinner styles */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #0077cc;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.appointment-form {
+    width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    right: -300px; /* Start hidden */
+    top: 50%;
+    transform: translateY(-50%);
+    transition: right 0.3s ease;
+    z-index: 999;
+}
+
+.appointment-form.visible {
+    right: 20px;
+}
+
+/* Hide the form before about section */
+.appointment-form:not(.visible) {
+    display: none;
+}
+
+.appointment-form h3 {
+    color: #c5a880;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.appointment-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.appointment-form input,
+.appointment-box select,
+.appointment-box textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+.appointment-form textarea {
+    resize: vertical;
+}
+
+.appointment-form button {
+    background: #c5a880;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.appointment-form button:hover {
+    background: #b39671;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .appointment-form {
+        position: static;
+        width: 100%;
+        transform: none;
+        border-radius: 0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        margin: 20px 0;
+    }
+}
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+}
+
+.modal-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.modal-box h2 {
+    margin-bottom: 10px;
+}
+
+.modal-box button {
+    padding: 10px 20px;
+    background: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Video Modal Specific Styles */
+.video-modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Ensure it's on top of everything */
+}
+
+.video-modal-content {
+    position: relative;
+    width: 90%; /* Responsive width */
+    max-width: 800px; /* Max width for larger screens */
+    background: #000;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width = 9 / 16 = 0.5625) */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001; /* Ensure close button is clickable */
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #c5a880; /* Highlight on hover */
+}
+
+
+/* services top down css */
+/* Footer Dropdown Styles */
+.dropdown-footer {
+    position: relative;
+}
+
+.dropdown-content-footer {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 220px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1001;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content-footer a {
+    color: #333333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #ffffff;
+}
+
+.dropdown-content-footer a:hover {
+    background-color: #f8f8f8;
+    color: #c5a880;
+}
+
+.dropdown-footer:hover .dropdown-content-footer {
+    display: block;
+}
+
+/* every treatment in plastic surgey images */
+/* Global Styles (These might be in your style.css, but included here for completeness) */
+.service-detail-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+footer {
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* Specific Styles for cosmetic-plastic-surgery.html */
+/*-----------------------------------------------------------------------------------*/
+
+/* Basic centering for the main heading */
+.main-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #7a5a28;
+}
+
+/* Style for the "About Dr." section */
+.about-doctor {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    max-width: 1000px;
+    margin: 20px auto 30px;
+    padding: 20px;
+    flex-direction: row;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.about-doctor .doctor-image {
+    flex-basis: 30%;
+    text-align: center;
+}
+
+.about-doctor .doctor-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-doctor .doctor-info {
+    flex-basis: 70%;
+}
+
+.about-doctor .doctor-info h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.about-doctor .doctor-info p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+/* Style for the two-column "Our Services Overview" section */
+.our-services-overview {
+    display: flex;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    gap: 30px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.service-categories {
+    flex-basis: 30%;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.service-categories h3 {
+    font-size: 1.5rem;
+    color: #7a5a28;
+    margin-bottom: 15px;
+    padding-right: 10px;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    padding-right: 10px;
+}
+
+.category-list li {
+    margin-bottom: 10px;
+}
+
+.category-list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.category-list li a:hover {
+    background-color: #f3e9da;
+    color: #5a3e2b;
+}
+
+.category-list li.active a {
+    font-weight: bold;
+    color: #fff;
+    background-color: #c5a880;
+    border-left: 3px solid #7a5a28;
+}
+
+.treatment-details {
+    flex-basis: 70%;
+}
+
+.treatment-details h4 {
+    font-size: 1.5rem;
+    color: #7a5a28;
+    margin-bottom: 15px;
+}
+
+.treatment-list-right {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.treatment-list-right li a {
+    display: block;
+    color: #444;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.treatment-list-right li a:hover {
+    background-color: #e9dbc4;
+    color: #5a3e2b;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Plastic Surgery Before & After Section */
+.plastic-surgery-before-after {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.plastic-surgery-before-after h2 {
+    font-size: 1.8rem;
+    color: #7a5a28;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.treatment-before-after {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.treatment-before-after h3 {
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.before-after-images {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.before-after-images .before,
+.before-after-images .after {
+    flex: 1;
+    text-align: center;
+}
+
+.before-after-images img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+}
+
+.before-after-images span {
+    display: block;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Other Services Links Section */
+.other-services-links {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.other-services-links h2 {
+    font-size: 1.5rem;
+    color: #7a5a28;
+    margin-bottom: 15px;
+}
+
+.other-services-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.other-services-links ul li a {
+    color: #444;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.other-services-links ul li a:hover {
+    background-color: #e9dbc4;
+    color: #5a3e2b;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Page Navigation */
+.page-navigation {
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.navigation-links {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.next-page {
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f3;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid #eee;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.next-page:hover {
+    background-color: #e9dbc4;
+    color: #5a3e2b;
+    border-color: #c5a880;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.next-page img {
+    width: 80px;
+    height: 60px;
+    margin-right: 15px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.next-page span {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+
+/* Gallery Page new page  */
+/* Gallery Page Specific Styles */
+.gallery-page-main {
+    background-color: #fffefb; /* Consistent background */
+    padding: 40px 20px;
+}
+
+.gallery-full-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center; /* Center the section title and description */
+}
+
+.section-description-gallery {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gallery-subsection-title {
+    font-size: 2.2em;
+    color: #D4AF37; /* Your primary gold color */
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.gallery-subsection-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80px; /* Short underline for section titles */
+    height: 3px;
+    background-color: #E6B875; /* Brighter gold/tan */
+    border-radius: 2px;
+}
+
+.gallery-full-grid {
+    display: grid;
+    /* INCREASED SIZE HERE: minmax(350px, 1fr) for larger items */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px; /* Slightly increased gap for larger items */
+    padding: 20px;
+    /* max-width is handled by parent .gallery-full-section */
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center; /* Ensure items are centered in the grid */
+}
+
+.gallery-item-full {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Indicate it's clickable */
+    /* Ensure flex properties if content needs centering */
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-item-full:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.gallery-item-full img {
+    width: 100%;
+    /* INCREASED HEIGHT HERE for images */
+    height: 300px; /* Fixed height for consistent box size, adjusted for larger view */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item-full:hover img {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.video-thumbnail-full {
+    /* INCREASED HEIGHT HERE for video containers */
+    height: 300px; /* Fixed height for video container, adjusted for larger view */
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #000;
+}
+
+.video-thumbnail-full iframe {
+    height: 100%; /* Iframe fills the fixed height container */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+}
+
+/* Reusing gallery overlay for full gallery items */
+.gallery-item-full .gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: #fff;
+    padding: 15px; /* Slightly reduced padding for full view */
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    text-align: left;
+}
+
+.gallery-item-full:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-item-full .gallery-overlay h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.gallery-item-full .gallery-overlay p {
+    font-size: 0.85em;
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+/* Instagram Embed Container Adjustment */
+.instagram-embed-container {
+    /* INCREASED HEIGHT HERE for Instagram embed container */
+    height: 400px; /* Increased height for better viewability */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Add a fallback background if embed fails to load */
+    padding: 10px; /* Add some padding inside the item */
+    box-sizing: border-box; /* Ensure padding is included in the height */
+}
+
+/* IMPORTANT: Stronger override for Instagram's internal sizing */
+.instagram-embed-container blockquote.instagram-media {
+    max-width: 100% !important; /* Ensure it doesn't overflow its container */
+    /* Instagram embeds often come with a max-height which might prevent them from growing.
+       You might need to adjust based on how Instagram's script renders. */
+    max-height: 100% !important; /* Ensure it respects the container's height */
+    width: 100% !important; /* Make it fill the width of its container */
+    height: 100% !important; /* Make it fill the height of its container */
+    margin: 0 auto !important; /* Center the embed and remove default margins */
+    display: flex; /* Use flex to help align content inside blockquote */
+    flex-direction: column; /* Allow content inside to stack if needed */
+    align-items: center;
+    justify-content: center;
+    border: 0 !important; /* Remove default Instagram border */
+    box-shadow: none !important; /* Remove default Instagram shadow if any */
+}
+
+/* Placeholder for visual representation if Instagram script fails to load */
+.instagram-embed-container blockquote.instagram-media div[style*="width:100%; height:100%"] {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#f0f0f0;
+    color:#888;
+    font-size:14px;
+}
+
+
+/* Gallery Modal Overlay (Lightbox) */
+.gallery-modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Darker overlay for focus */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Ensure it's on top */
+    backdrop-filter: blur(5px); /* Subtle blur effect */
+}
+
+.gallery-modal-content {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto; /* Allows scrolling if content is too large */
+    text-align: center;
+}
+
+.gallery-modal-content img,
+.gallery-modal-content iframe {
+    max-width: 100%;
+    max-height: 70vh; /* Max height to prevent overflowing screen */
+    display: block; /* Ensures they don't have extra space below */
+    margin: 0 auto 15px auto; /* Center and add margin below */
+    border-radius: 8px; /* Consistent rounded corners */
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #fff; /* White close button on dark overlay */
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+    transition: color 0.3s ease;
+}
+
+.close-modal-btn:hover {
+    color: #D4AF37; /* Gold on hover */
+}
+
+.modal-description {
+    text-align: left; /* Align text within description */
+    color: #333;
+    margin-top: 10px;
+}
+
+.modal-description h3 {
+    font-size: 1.5em;
+    color: #5a3e2b; /* Dark brown from your palette */
+    margin-bottom: 5px;
+}
+
+.modal-description p {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
+}
+
+
+/* Responsive adjustments for Gallery Page */
+@media (max-width: 768px) {
+    .gallery-full-grid {
+        /* Adjusted minmax for tablets */
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .gallery-item-full img,
+    .video-thumbnail-full,
+    .instagram-embed-container {
+        height: 350px; /* Adjusted height for tablets for Instagram too */
+    }
+
+    .gallery-subsection-title {
+        font-size: 1.8em;
+        margin-top: 40px;
+        margin-bottom: 25px;
+    }
+
+    .gallery-full-section {
+        padding: 20px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-full-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+        padding: 5px;
+        gap: 15px; /* Adjusted gap for single column */
+    }
+
+    .gallery-item-full img,
+    .video-thumbnail-full,
+    .instagram-embed-container {
+        height: 300px; /* Adjusted height for very small mobiles for Instagram too */
+    }
+
+    .gallery-modal-content {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    .close-modal-btn {
+        font-size: 2rem;
+        top: 5px;
+        right: 15px;
+    }
+}
+
+
+/* Hamburger Menu (Mobile Only) */
+.hamburger-menu {
+    display: none; /* Hidden by default on desktop */
+    font-size: 2.2rem;
+    cursor: pointer;
+    color: #D4AF37; /* Gold color for the icon */
+    z-index: 1001; /* Ensure it's above other content */
+}
+
+/* Mobile Navigation (Initially Hidden) */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen to the right */
+    width: 80%; /* Adjust as needed, or use max-width */
+    max-width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: right 0.3s ease-in-out; /* Smooth slide effect */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable scrolling for long menus */
+}
+
+.mobile-nav.open {
+    right: 0; /* Slide into view */
+}
+
+.mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.logo-img-mobile {
+    height: 50px; /* Smaller logo for mobile menu */
+    width: auto;
+}
+
+.close-menu {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav-links li {
+    margin-bottom: 15px;
+}
+
+.mobile-nav-links li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: block;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-links li a:hover {
+    color: #D4AF37;
+}
+
+/* Mobile Dropdown Specifics */
+.mobile-dropdown-arrow {
+    margin-left: 5px;
+    font-size: 0.8em;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+.mobile-dropdown.active .mobile-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.mobile-dropdown-content {
+    display: none; /* Hidden by default */
+    list-style: none;
+    padding-left: 15px; /* Indent dropdown items */
+    margin-top: 10px;
+}
+
+.mobile-dropdown-content a {
+    font-weight: 400; /* Lighter font for mobile dropdown items */
+    font-size: 1rem;
+    padding: 8px 0;
+    color: #555;
+}
+
+.mobile-dropdown-content a:hover {
+    color: #D4AF37;
+}
+
+/* Overlay for Mobile Menu */
+.mobile-nav-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+    z-index: 999; /* Below the mobile menu, above content */
+}
+
+.mobile-nav-overlay.active {
+    display: block;
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 992px) { /* Adjust breakpoint as needed */
+    .desktop-nav { /* You might need to change this selector if your desktop nav is just .nav-links */
+        display: none; /* Hide desktop nav on smaller screens */
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger icon */
+    }
+
+    /* Keep or adjust other media queries you have for other sections */
+}
+

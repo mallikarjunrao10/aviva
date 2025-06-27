@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Herpes Infection - Aviva Aesthetics</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic dropdown styling */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {background-color: #ddd;}
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            /* Maintain aspect ratio based on a 1100x500 image */
+            padding-bottom: 45.45%; /* (500 / 1100) * 100% */
+            overflow: hidden;
+            height: auto; /* Ensure height is auto to respect padding-bottom */
+        }
+
+        .hero-section img {
+            position: absolute; /* Essential for filling the padding-bottom container */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensures the entire image is visible, like pediatrics */
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            width: 90%;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .content-section h1 {
+            font-size: 2.8rem;
+            color: #0a0a09; /* Changed to gold */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-section h2 {
+            color: #D4AF37; /* Changed to gold */
+            font-size: 2.2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center; /* Centering for h2 elements */
+        }
+
+        .content-section h3 {
+            color: #000000; /* Changed to gold */
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            text-align: left; /* Keep h3 left-aligned as per original service pages */
+        }
+
+        .content-section p {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            list-style: disc;
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .content-section ul li {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .content-section section {
+            margin-bottom: 3rem;
+        }
+
+        .author {
+            text-align: center;
+            color: #D4AF37; /* Changed to gold */
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .introduction {
+            margin-bottom: 3rem;
+            text-align: center; /* Centering for introduction paragraph */
+        }
+
+        .introduction p {
+            text-align: center; /* Ensuring paragraphs in introduction are centered */
+        }
+
+        /* Hair transplant specific list style with numbers */
+        .content-section .hair-transplant-list {
+            list-style: none; /* Remove default bullet */
+            padding-left: 0;
+            max-width: 800px; /* Limit width for better readability */
+            margin: 2rem auto; /* Center the list */
+            counter-reset: custom-counter; /* Initialize counter */
+        }
+
+        .content-section .hair-transplant-list li {
+            position: relative;
+            padding-left: 35px; /* Space for the number */
+            margin-bottom: 15px;
+            color: #444;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            text-align: left; /* Ensure list items are left-aligned */
+        }
+
+        .content-section .hair-transplant-list li::before {
+            counter-increment: custom-counter; /* Increment counter */
+            content: counter(custom-counter) ". "; /* Display the counter */
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
+            color: #7a5a28; /* Adjust number color */
+            font-size: 1.1em;
+        }
+
+        .book-appointment {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .book-appointment-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #D4AF37; /* Applied theme color to match obesity-clinic.html */
+            color: white; /* White text for contrast */
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            border: 1px solid #c2a36c; /* Subtle border */
+        }
+
+        .book-appointment-button:hover {
+            background-color: #000000; /* Darker shade on hover to match obesity-clinic.html */
+            color: white; /* White text on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly more prominent shadow on hover */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .content-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .content-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .content-section p,
+            .content-section ul li,
+            .content-section .hair-transplant-list li {
+                font-size: 1rem;
+            }
+            .hero-section {
+                padding-bottom: 45.45%; /* Keep consistent aspect ratio for mobile too */
+                height: auto; /* Ensure height is auto to respect padding-bottom */
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .content-section .hair-transplant-list li {
+                padding-left: 30px; /* Adjust padding for smaller screens */
+            }
+        }
+        /* WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-float img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/60x60/c2a36c/FFFFFF?text=Logo';" />
+            
+            <div class="hamburger-menu" id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html#about">About</a></li>
+                    <li class="dropdown">
+                        <a href="#">Services <i class="fas fa-chevron-down dropdown-arrow"></i></a>
+                        <div class="dropdown-content">
+                            <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                            <a href="dermatology.html">Dermatology</a>
+                            <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                            <a href="smile.html">Smile Clinic (Dental)</a>
+                            <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                            <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                            <a href="pediatrics.html">Pediatrics</a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#book">Appointment</a></li>
+                    <li><a href="index.html#team">Our Team</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <nav class="mobile-nav" id="mobile-nav">
+            <div class="mobile-nav-header">
+                <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="logo-img-mobile" onerror="this.onerror=null;this.src='https://placehold.co/60x60/c2a36c/FFFFFF?text=Logo';" />
+                <div class="close-menu" id="close-menu">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li class="mobile-dropdown">
+                    <a href="#">Services <i class="fas fa-chevron-down mobile-dropdown-arrow"></i></a>
+                    <div class="mobile-dropdown-content">
+                        <a href="plastic-surgery.html">Plastic & Cosmetic Surgery</a>
+                        <a href="dermatology.html">Dermatology</a>
+                        <a href="skinandhairaesthetics.html">Skin & Hair Aesthetics</a>
+                        <a href="smile.html">Smile Clinic (Dental)</a>
+                        <a href="obesity-clinic.html">Obesity Clinic (Weight Loss)</a>
+                        <a href="cosmetic-gynecology.html">Cosmetic Gynecology</a>
+                        <a href="pediatrics.html">Pediatrics</a>
+                    </div>
+                </li>
+                <li><a href="index.html#book">Appointment</a></li>
+                <li><a href="index.html#team">Our Team</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <img src="assets/images/herpes1.png" alt="Herpes Infection Treatment">
+        <div class="hero-content">
+            <h1>Herpes Infection</h1>
+            <p>Symptoms, Causes, Diagnosis & Treatment in India</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <article class="treatment-info">
+            <h1>Herpes Infection: Symptoms, Causes, Diagnosis & Treatment in India</h1>
+            <h2 class="introduction">What is Herpes?</h2>
+
+            <div class="introduction">
+                <p>Herpes is a common viral infection caused by the Herpes Simplex Virus (HSV). It primarily affects the skin and mucous membranes, leading to painful blisters or sores. There are two main types:</p>
+                <ul class="info-list">
+                    <li><b>HSV-1 (Oral Herpes):</b> Usually causes cold sores around the mouth.</li>
+                    <li><b>HSV-2 (Genital Herpes):</b> Mainly causes sores in the genital or anal area.</li>
+                </ul>
+                <p>Herpes is <b>highly contagious</b> and spreads through close personal contact, including kissing, sexual activity, or sharing personal items.</p>
+            </div>
+
+            <hr class="section-divider">
+
+            <section class="treatment-details">
+                <h2>How Common is Herpes in India?</h2>
+                <p>Herpes infections are widely underreported in India due to stigma and lack of awareness. However, <b>studies estimate that over 10–15%</b> of the population may carry HSV, especially HSV-2, even if they are asymptomatic.</p>
+
+                <h2>Symptoms of Herpes</h2>
+                <p>Symptoms vary depending on the type and severity of the infection.</p>
+                <h3>Common Signs Include:</h3>
+                <ul class="info-list">
+                    <li>Painful blisters or sores on the mouth, lips, genitals, or anus</li>
+                    <li>Itching or burning sensation before sores appear</li>
+                    <li>Fever and body aches (during the first outbreak)</li>
+                    <li>Swollen lymph nodes</li>
+                    <li>Painful urination (in genital herpes)</li>
+                </ul>
+                <p>Many people with herpes may <b>not show any symptoms</b>, but they can still transmit the virus.</p>
+
+                <h2>How Herpes Spreads</h2>
+                <p>Herpes is transmitted through:</p>
+                <ul class="checkmark-list">
+                    <li><i class="fas fa-check"></i> Oral or genital contact (including sexual activity)</li>
+                    <li><i class="fas fa-check"></i> Sharing utensils, razors, or towels with an infected person</li>
+                    <li><i class="fas fa-check"></i> From mother to baby during childbirth (neonatal herpes)</li>
+                </ul>
+
+                <h2>Diagnosis</h2>
+                <p>Doctors can diagnose herpes through:</p>
+                <ul class="info-list">
+                    <li>Physical examination of the sores</li>
+                    <li>Swab test from an active sore</li>
+                    <li>Blood test to detect HSV antibodies</li>
+                </ul>
+                <p>If you suspect a herpes infection, it’s essential to consult a <b>dermatologist or gynecologist/urologist</b>.</p>
+
+                <h2>Treatment Options</h2>
+                <p>There is <b>no permanent cure</b> for herpes, but antiviral medicines help manage outbreaks and reduce transmission.</p>
+                <h3>Common Medications:</h3>
+                <ul class="info-list">
+                    <li>Acyclovir</li>
+                    <li>Valacyclovir</li>
+                    <li>Famciclovir</li>
+                </ul>
+                <p>For recurring outbreaks, doctors may recommend <b>daily suppressive therapy</b>.</p>
+
+                <h2>Prevention Tips</h2>
+                <ul class="checkmark-list">
+                    <li><i class="fas fa-check"></i> Avoid skin-to-skin contact during outbreaks</li>
+                    <li><i class="fas fa-check"></i> Use condoms or dental dams during sex</li>
+                    <li><i class="fas fa-check"></i> Avoid sharing personal items like lip balm, towels, or razors</li>
+                    <li><i class="fas fa-check"></i> Get regular STI screenings if sexually active</li>
+                </ul>
+
+                <h2>Living with Herpes</h2>
+                <p>Though the diagnosis can be emotionally challenging, remember:</p>
+                <ul class="info-list">
+                    <li>It’s a <b>manageable condition</b></li>
+                    <li>Many people live healthy lives with herpes</li>
+                    <li>Support groups and counseling can help cope with stress and stigma</li>
+                </ul>
+
+                <h2>When to See a Doctor</h2>
+                <p>Visit a healthcare provider if you:</p>
+                <ul class="info-list">
+                    <li>Notice blisters or sores in the mouth or genital area</li>
+                    <li>Experience frequent recurrences</li>
+                    <li>Are pregnant and suspect you have herpes</li>
+                </ul>
+
+                <div class="final-words">
+                    <h2>Final Word</h2>
+                    <p>Herpes is more common than most people realize and doesn’t define your health or self-worth. With the right care and lifestyle changes, you can manage herpes effectively. Early diagnosis and treatment can make a big difference.</p>
+                </div>
+
+                <section class="book-appointment">
+                    <h2>Ready to Discuss Herpes Treatment?</h2>
+                    <p>Schedule a personalized consultation with our expert healthcare providers today.</p>
+                    <a href="index.html#book" class="book-appointment-button">Book Your Consultation Now</a>
+                </section>
+            </section>
+        </article>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-column brand-info">
+                <img src="assets/images/logo_aviva (1).png" alt="Aviva Aesthetics Logo" class="footer-logo">
+                <p>Aviva Aesthetics is one of the leading aesthetic clinics in Karimnagar, offering a comprehensive range of skin, hair, and body treatments.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/dr_haripriyaavivaaesthetics" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/YOUR_PAGE" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="http://youtube.com/YOUR_CHANNEL" target="_blank" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column quick-links">
+                <h4>Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html" id="home-link">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="plastic-surgery.html">Services</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                    <li><a href="index.html#book">Contact Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column useful-links">
+                <h4>Useful Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms and Conditions</a></li>
+                    <li><a href="#disclaimer">Disclaimer</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column make-appointment">
+                <h4>Make Appointment</h4>
+                <p class="clinic-hours">10 AM - 7 PM, Monday - Saturday</p>
+                <p class="clinic-hours">Sunday - Closed</p>
+
+                <div class="call-today-box">
+                    <div class="call-today-content">
+                        <div class="call-icon-wrapper">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="call-text-numbers">
+                            <p class="call-today-text">Call Us Today</p>
+                            <p class="call-today-number">(+91) 9129912945</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="footer-divider">
+
+        <div class="footer-bottom">
+            <p>© 2025 AvivaAesthetics.com. All rights reserved.</p>
+            <p>Powered by mallikdev</p>
+        </div>
+    </footer>
+    <a href="https://wa.me/919129912945"
+        class="whatsapp-float"
+        target="_blank"
+        aria-label="Chat on WhatsApp">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+    </a>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>

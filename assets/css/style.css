@@ -3137,3 +3137,10 @@ footer {
     /* Keep or adjust other media queries you have for other sections */
 }
 
+.footer-bottom p a {
+    background-color: #5a7a70; /* A slightly lighter shade of your background */
+    color: white; /* Text color */
+    padding: 2px 5px; /* Adjust padding as needed */
+    border-radius: 3px; /* Slightly rounded corners */
+    text-decoration: none;
+}

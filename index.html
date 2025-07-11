@@ -672,31 +672,36 @@
             <p><strong>Sunday:</strong> 9:00 AM - 8:00 PM</p>
         </div>
 
-        <div id="book" class="appointment-box">
-        <h3>Book Your Appointment</h3>
-        <!-- The action attribute is removed as JavaScript will handle the submission -->
-        <form id="appointmentForm" method="POST">
-            <input type="text" placeholder="Full Name" name="name" id="full_name" required>
-            <input type="email" placeholder="Email Address" name="email" id="email" required>
-            <input type="tel" placeholder="Phone Number" name="phone" id="phone" required>
-            <select name="service" id="service" required>
-                <option value="">Select a service</option>
-                <option>Plastic & Cosmetic Surgery</option>
-                <option>Dermatology</option>
-                <option>Skin & Hair Aesthetics</option>
-                <option>Smile Clinic (Dental)</option>
-                <option>Obesity Clinic (Weight Loss)</option>
-                <option>Cosmetic Gynecology</option>
-                <option>Pediatrics</option>
-            </select>
-            <input type="date" name="date" id="date" required>
-            <input type="time" name="time" id="time" required>
-            <textarea rows="4" placeholder="Please share any specific concerns or questions you have" name="message" id="message"></textarea>
-            <button type="submit">Request Appointment</button>
-        </form>
-        <!-- Message display area added for user feedback -->
-        <div id="messageArea" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></div>
+        <div id="appointmentModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Book Your Appointment</h3>
+            <button type="button" class="close-modal-button" id="closeAppointmentModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="appointmentFormModal" method="POST">
+                <input type="text" placeholder="Full Name" name="name" id="modal_full_name" required>
+                <input type="email" placeholder="Email Address" name="email" id="modal_email" required>
+                <input type="tel" placeholder="Phone Number" name="phone" id="modal_phone" required>
+                <select name="service" id="modal_service" required>
+                    <option value="">Select a service</option>
+                    <option>Plastic & Cosmetic Surgery</option>
+                    <option>Dermatology</option>
+                    <option>Skin & Hair Aesthetics</option>
+                    <option>Smile Clinic (Dental)</option>
+                    <option>Obesity Clinic (Weight Loss)</option>
+                    <option>Cosmetic Gynecology</option>
+                    <option>Pediatrics</option>
+                </select>
+                <input type="date" name="date" id="modal_date" required>
+                <input type="time" name="time" id="modal_time" required>
+                <textarea rows="4" placeholder="Please share any specific concerns or questions you have" name="message" id="modal_message"></textarea>
+                <button type="submit">Request Appointment</button>
+            </form>
+            <div id="modalMessageArea" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></div>
+        </div>
     </div>
+</div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

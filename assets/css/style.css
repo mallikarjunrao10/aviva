@@ -3144,3 +3144,144 @@ footer {
     border-radius: 3px; /* Slightly rounded corners */
     text-decoration: none;
 }
+
+/* --- Appointment Modal Styles --- */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top (higher than other content) */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 20px; /* Padding around the modal content */
+    box-sizing: border-box; /* Include padding in width/height */
+    animation: fadeIn 0.3s ease-out; /* Fade in animation */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Auto margin for vertical centering (when display is block for older browsers) */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%; /* Responsive width */
+    max-width: 600px; /* Maximum width */
+    position: relative; /* For positioning the close button */
+    animation: slideInTop 0.4s ease-out; /* Slide in animation */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    max-height: 90vh; /* Max height to allow scrolling if content is long */
+    overflow-y: auto; /* Enable scrolling for content if it exceeds max-height */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.8em; /* Adjust as needed */
+}
+
+.close-modal-button {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.close-modal-button:hover,
+.close-modal-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.modal-body form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between form elements */
+}
+
+.modal-body form input[type="text"],
+.modal-body form input[type="email"],
+.modal-body form input[type="tel"],
+.modal-body form input[type="date"],
+.modal-body form input[type="time"],
+.modal-body form select,
+.modal-body form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Ensures padding doesn't increase total width */
+}
+
+.modal-body form input[type="date"]::-webkit-calendar-picker-indicator,
+.modal-body form input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(30%) sepia(100%) saturate(600%) hue-rotate(170deg) brightness(90%) contrast(90%); /* Example: make calendar icon a bit darker/accented */
+}
+
+
+.modal-body form button[type="submit"] {
+    background-color: #c2a36c; /* Your brand color */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.modal-body form button[type="submit"]:hover {
+    background-color: #a68c5b; /* Slightly darker on hover */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInTop {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    .modal-header h3 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 15px;
+    }
+    .modal-header h3 {
+        font-size: 1.3em;
+    }
+    .modal-body form button[type="submit"] {
+        font-size: 1em;
+    }
+}

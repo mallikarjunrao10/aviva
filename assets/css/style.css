@@ -1730,7 +1730,7 @@ span {
 /* --- Global / Base Styles --- */
 /* --- Global / Base Styles --- */
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
 }
 
 /* --- Footer Styles (Skin Sanctum Clone - Full Update with Logo & Full Underlines) --- */

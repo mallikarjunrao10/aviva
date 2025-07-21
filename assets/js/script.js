@@ -70,6 +70,28 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// --- Google Ads Conversion Tracking Function ---
+/**
+ * Reports a Google Ads conversion event for "Book appointment".
+ * This function should be called upon successful appointment booking.
+ * @param {string} [url] Optional URL to redirect to after the conversion.
+ */
+function gtag_report_conversion(url) {
+    var callback = function () {
+        if (typeof(url) != 'undefined') {
+            window.location = url;
+        }
+    };
+    // This 'send_to' ID must match the specific 'Book appointment' conversion action in Google Ads
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17109414290/xzeeCN7MrPQaEJLjs94_', // Specific Conversion Label for "Book appointment"
+        'event_callback': callback
+    });
+    return false; // Prevents default link behavior if used on a link
+}
+// --- END Google Ads Conversion Tracking Function ---
+
+
 // ======================================================
 // All other DOM-dependent JavaScript goes inside
 // a single DOMContentLoaded listener for efficiency
@@ -242,6 +264,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     appointmentFormModal.reset(); // Clear the form
                     // Optionally, you might want to auto-close the modal after a few seconds
                     setTimeout(closeAppointmentModal, 3000); 
+
+                    // --- CALL GOOGLE ADS CONVERSION HERE ---
+                    if (typeof gtag === 'function') {
+                        // Call your specific conversion function
+                        gtag_report_conversion(); // No URL needed as you're not redirecting
+                        console.log("Google Ads 'Book appointment' conversion event fired.");
+                    } else {
+                        console.warn("gtag function not found. Google Ads conversion might not be tracked. Ensure Google tag is installed correctly in your HTML <head>.");
+                    }
+                    // --- END CALL ---
+
                 } else {
                     const errorText = await response.text();
                     console.error('Error submitting form to Make.com:', response.status, errorText);
